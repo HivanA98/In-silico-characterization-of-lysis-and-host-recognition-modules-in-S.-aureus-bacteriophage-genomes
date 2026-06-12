@@ -158,19 +158,6 @@ GenBank\  (22 complete genome .gb files)
 
 ---
 
-## Changes from Original Scripts
-
-| Original | Issue | Resolution |
-|----------|-------|-----------|
-| Genome Size, GC, CDS, tRNA.py | Single-file; hardcoded path | Batch; argparse (S1); + Class/SubFamily added |
-| phastest_batch.py | Only Holin + Tail Fiber output used | Refocused as S2 (Holin + Tail Fiber only) |
-| extract_endolysin.py | Extracted ALL CDS -> InterPro >100 error | Replaced by S4: endolysin-only, one combined FASTA, paste-ready |
-| ekstrak_TerL.py (V1) | Missed 7 Kayvirus (product="Ter") + 2 micro-phages | Kayvirus fixed via exact match; 2 micro-phages excluded |
-| ekstrak_TerL.py (V2) | Per-genome FASTA; manual concatenation | Merged into S3, combined multi-FASTA |
-| All scripts | No error handling; hardcoded paths | try/except + logging; argparse for all paths |
-
----
-
 ## Reference
 
 Cock PJA, Antao T, Chang JT, Chapman BA, Cox CJ, Dalke A, Friedberg I,
