@@ -28,6 +28,8 @@
 | numpy | **2.4.6** | indirect (auto-installed by pandas; never imported directly) |
 | MAFFT | **web server** | https://mafft.cbrc.jp/alignment/server/ (no local install) |
 | MEGA | **12.1.2** | https://www.megasoftware.net/ |
+| InterPro | **108.0** | https://www.ebi.ac.uk/interpro/search/sequence/ |
+
 
 No other dependencies. Scripts output CSV or FASTA (plain text). Other modules used (argparse, logging, pathlib, dataclasses, sys, typing) are Python standard library.
 
