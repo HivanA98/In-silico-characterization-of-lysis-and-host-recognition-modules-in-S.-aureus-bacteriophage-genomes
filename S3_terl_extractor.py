@@ -17,9 +17,8 @@ MANUSCRIPT CONTRIBUTION
 ==============================================================================
 
 Associated manuscript:
-    "Molecular Characterization of Lytic Bacteriophages Against Resistant
-    Staphylococcus aureus Based on NCBI GenBank Sequences:
-    A Bioinformatic Literature Review"
+    "In silico characterization of lysis and host-recognition modules in
+    Staphylococcus aureus bacteriophage genomes"
 
 Description
 -----------
