@@ -1,0 +1,36 @@
+# Phage Characterization Toolkit v3.2 — Staphylococcus aureus release
+# Python packages required by stages S1-S7, S4b and S7b.
+#
+# Pins are the exact versions used to produce the results in the manuscript.
+# Install with:   pip install -r requirements.txt
+#
+# Python 3.12.10 was used; >= 3.10 is required (the code uses PEP 604 unions
+# and PEP 585 generics).
+
+biopython==1.87
+pandas==3.0.3
+PyYAML==6.0.2
+
+# numpy is installed automatically as a pandas dependency and is never imported
+# directly by any stage. Recorded here for provenance only:
+#   numpy==2.4.6
+
+# ---------------------------------------------------------------------------
+# NOT installable with pip. Install separately; versions used are recorded so
+# the run can be reproduced exactly.
+# ---------------------------------------------------------------------------
+#   BLAST+ (tblastn)        2.16.0   optional, only for S4 --run-tblastn
+#   tRNAscan-SE             2.0      required by S6 (external run)
+#   MAFFT                   web server, run 16 August 2026 (L-INS-i)
+#   MEGA                    12.1.2  build 12251216-x86_64
+#   InterPro                108.0   (web submission)
+#   VIRIDIC                 web server, default BLASTN parameter set
+#
+# Re-annotation arms (Docker, not required to reproduce Tables I, II or the
+# figure; required only to reproduce Table III):
+#   Pharokka                1.10.1
+#   Phold                   1.3.0
+#   Phynteny_transformer    0.1.3
+#   torch                   2.8.0+cu128
+#   setuptools              <82      (Phynteny 0.1.3 imports pkg_resources,
+#                                     removed in setuptools 82.0.0)

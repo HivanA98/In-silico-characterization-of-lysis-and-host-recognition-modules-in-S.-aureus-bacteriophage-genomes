@@ -75,21 +75,31 @@ with the Python packages above and require no compilation.
 ## 3. Contents
 
 ```
-GenBank/                          22 deposited GenBank records (one genome per file)
-GenBank/Pharokka_Phold/           the same 22 genomes re-annotated (Pharokka -> Phold)
-GenBank/Phynteny/phynteny.gbk     Phynteny output: ALL 22 genomes in ONE file
-host/Staphylococcus_aureus/       host genomes for S7 codon reference
-phage_characterization/profiles/  AureusPhage.yaml — the host profile
-phagecore/                        shared engine
-S1..S7, S4b, S7b                  stage scripts
-Mega Phylogeny Result/            Newick export, MEGA session, Figure 1 SVG
-alignments/                       TerL and endolysin-domain alignments
-interpro/                         InterPro TSV results
-results/                          per-stage CSV outputs for the three annotation arms
-viridic/                          intergenomic similarity matrix and heatmap
+GenBank/AureusPhage/                22 deposited GenBank records, one genome per file
+GenBank/Aureus_Pharokka/            the same 22 genomes re-annotated (Pharokka -> Phold)
+GenBank/Aureus_Phynteny/            Phynteny output: ALL 22 genomes in ONE file
+host/Staphylococcus_aureus/         host genomes for the S7 codon reference
+phage_characterization/profiles/    AureusPhage.yaml — the host profile
+phagecore/                          shared engine
+S1..S7, S4b, S7b, validate_outputs  stage scripts
+results/result_aureus/              stage outputs (deposited-GenBank arm)
+results/result_aureus_pharokka/     stage outputs (Pharokka arm, Table III)
+results/result_aureus_phold/        stage outputs (Phold arm, Table III)
+results/result_aureus/interpro_endolysin/   InterPro TSV consumed by S4 --interpro
+results/result_aureus/interpro_rbp/         InterPro TSV consumed by S5 --interpro
+results/result_aureus/codon_analysis/       S7 and S7b tables
+results/result_aureus/endolysin_identity/   S4b matrices and domain alignments
+alignments/                         TerL FASTA and MAFFT alignment
+mega/                               Newick export, MEGA session, analysis summary, Figure 1 SVG
+viridic/                            intergenomic similarity matrix and heatmap
 ```
 
-**`GenBank/Phynteny/phynteny.gbk` holds all 22 genomes in a single file.** The stage
+The directory names follow the pipeline's own convention: input genomes under
+`GenBank/<Group>/`, host genomes under `host/<species>/`, and one `results/result_<x>/`
+folder per annotation arm. Each stage writes a named file inside that folder, so an
+output can always be traced back to the command that produced it.
+
+**`GenBank/Aureus_Phynteny/phynteny.gbk` holds all 22 genomes in a single file.** The stage
 scripts take one genome per file (`phagecore/genbank_io.py` reads the first record of
 each file), so this file must be split before it can be used as input. It is deposited
 in the form Phynteny writes it.
@@ -98,15 +108,22 @@ in the form Phynteny writes it.
 
 ## 4. Reproducing the manuscript
 
-Input convention: phage genomes in `GenBank/`, host genomes in
-`host/Staphylococcus_aureus/`, outputs in `results/`.
+Input convention: phage genomes in `GenBank/AureusPhage/`, host genomes in
+`host/Staphylococcus_aureus/`, outputs in `results/result_aureus/`. Commands are given
+as single lines for Windows Command Prompt, matching the pipeline's own CLI record.
 
 ### Table I
 
 ```
-python S1_genome_statistics.py -i GenBank -o results\result_aureus_04 ^
-       --profile phage_characterization\profiles\AureusPhage.yaml
+mkdir results\result_aureus
+mkdir results\result_aureus\interpro_endolysin
+mkdir results\result_aureus\interpro_rbp
+
+python S1_genome_statistics.py -i GenBank\AureusPhage -o results\result_aureus\Table1_AureusPhage.csv --profile phage_characterization\profiles\AureusPhage.yaml --manifest results\result_aureus\manifest_s1.csv
 ```
+
+Every stage writes to an explicit **file** path, not a directory. The one exception is
+S7, whose `-o` is the `codon_analysis` folder because it emits four related tables.
 
 Class, family and subfamily are read from `record.annotations["taxonomy"]` by ICTV
 rank suffix (`-viricetes`, `-viridae`, `-virinae`). Subfamilies that NCBI places in no
@@ -116,8 +133,7 @@ family *Unassigned* and flagged `family_unresolved_verify_ICTV` rather than left
 ### Table II — holin and RBP columns
 
 ```
-python S2_holin_rbp_annotation.py -i GenBank -o results\result_aureus_04 ^
-       --profile phage_characterization\profiles\AureusPhage.yaml
+python S2_holin_rbp_annotation.py -i GenBank\AureusPhage -o results\result_aureus\Table2_holin_rbp_AureusPhage.csv --profile phage_characterization\profiles\AureusPhage.yaml
 ```
 
 Holin and RBP presence are called from the wording of the CDS `product` qualifier
@@ -129,9 +145,17 @@ in essentially every tailed phage and would make the column uninformative.
 
 ### Table II — endolysin columns
 
+Pass 1 — collect candidates and write the unique-sequence FASTA for InterPro:
+
 ```
-python S4_endolysin_extractor.py -i GenBank -o results\result_aureus_04 ^
-       --profile phage_characterization\profiles\AureusPhage.yaml --run-tblastn
+python S4_endolysin_extractor.py -i GenBank\AureusPhage -o results\result_aureus\endolysin_candidates_AureusPhage.faa --output-unique results\result_aureus\endolysin_unique_AureusPhage.faa --csv results\result_aureus\endolysin_audit_AureusPhage.csv --pharokka-triage results\result_aureus\pharokka_triage_AureusPhage.csv --profile phage_characterization\profiles\AureusPhage.yaml --manifest results\result_aureus\manifest_s4.csv
+```
+
+Submit `endolysin_unique_AureusPhage.faa` to InterPro and save every result batch into
+`results\result_aureus\interpro_endolysin\`. Pass 2 — reconcile the domains:
+
+```
+python S4_endolysin_extractor.py -i GenBank\AureusPhage -o results\result_aureus\endolysin_candidates_AureusPhage.faa --output-unique results\result_aureus\endolysin_unique_AureusPhage.faa --csv results\result_aureus\endolysin_audit_AureusPhage.csv --interpro results\result_aureus\interpro_endolysin\ --profile phage_characterization\profiles\AureusPhage.yaml --manifest results\result_aureus\manifest_s4.csv
 ```
 
 The script collects **every** lysis-keyword CDS and ranks them, rather than taking the
@@ -153,18 +177,22 @@ tblastn -query <MN336261 Sb1_8383 LysK, 495 aa> -subject <genome.fna>
 All other parameters are BLAST+ defaults (e-value 10, word size 3, BLOSUM62, gap open
 11, gap extend 1, SEG filtering on). Acceptance threshold `--identity-threshold`,
 default **90.0 %**: at or above it the hit is recorded as `tblastn-recovered`, below it
-as `divergent-uncertain`. Three genomes met the trigger — Maine (MN045228), JD007
-(NC_019726) and Twort (NC_007021).
+as `divergent-uncertain`.
+
+**Important for reproduction.** In the v3.2 run reported here, `--run-tblastn` produced
+no new alignment. All four genomes that would trigger it — Maine (MN045228), JD007
+(NC_019726), Sb1M_6168 (MN336262) and Sb1M_9832 (MN336263) — are entries in the
+profile's `known_cases`, and that branch returns before tBLASTn is reached. The
+identities recorded for them (99.0 % for Maine and JD007) come from the curated
+registry, which encodes the original manual tBLASTn work, not from a fresh execution.
+Running S4 with and without `--run-tblastn` therefore yields byte-identical candidate
+FASTA files for this dataset. The command above is given so the original searches can
+be repeated independently.
 
 ### Supplementary Table S4 — per-domain identity
 
 ```
-python S4b_endolysin_domain_identity.py ^
-       --faa results\result_aureus_04\endolysin_unique_AureusPhage_confirmed.faa ^
-       --interpro results\result_aureus_04\interpro_endolysin\endolysin_unique_AureusPhage.tsv ^
-       -o results\result_aureus_04\endolysin_identity ^
-       --profile phage_characterization\profiles\AureusPhage.yaml ^
-       --status free-endolysin
+python S4b_endolysin_domain_identity.py --faa results\result_aureus\endolysin_unique_AureusPhage_confirmed.faa --interpro results\result_aureus\interpro_endolysin\endolysin_unique_AureusPhage.tsv -o results\result_aureus\endolysin_identity --profile phage_characterization\profiles\AureusPhage.yaml --status free-endolysin
 ```
 
 Domain boundaries are **read from the InterPro output already used for Table II**, not
@@ -183,7 +211,7 @@ web-server result as `<domain>.aln.faa`.
 ### Figure 1 — TerL phylogeny
 
 ```
-python S3_terl_extractor.py -i GenBank -o results\result_aureus_04\TerL_combined.faa
+python S3_terl_extractor.py -i GenBank\AureusPhage -o results\result_aureus\TerL_combined_AureusPhage.faa
 ```
 
 S3 takes no profile: the terminase large subunit is universal.
@@ -229,19 +257,22 @@ sum of branch lengths 4.662.
 
 ### Supplementary Table S2 — codon usage
 
+S6 runs in two passes around the external tRNAscan-SE step. Pass 1 writes the input
+FASTA; pass 2 reads the tRNAscan-SE output back:
+
 ```
-python S6_tRNA_analyzer.py  -i GenBank -o results\result_aureus_04 ^
-       --profile phage_characterization\profiles\AureusPhage.yaml
+python S6_tRNA_analyzer.py -i GenBank\AureusPhage -o results\result_aureus\trnascan_input_Aureus.fasta --profile phage_characterization\profiles\AureusPhage.yaml
+```
 
-python S7_codon_trna_coverage.py --host host\Staphylococcus_aureus ^
-       --trna results\result_aureus_04\tRNA_detailed_Aureus.csv ^
-       -o results\result_aureus_04\codon_analysis ^
-       --profile phage_characterization\profiles\AureusPhage.yaml
+Run tRNAscan-SE 2.0 on that FASTA and save the raw output as
+`results\result_aureus\trnascan_results_Aureus.txt`, then:
 
-python S7b_phage_codon_usage.py --phage-dir GenBank ^
-       --host host\Staphylococcus_aureus ^
-       -o results\result_aureus_04\codon_analysis ^
-       --profile phage_characterization\profiles\AureusPhage.yaml
+```
+python S6_tRNA_analyzer.py -i GenBank\AureusPhage --results results\result_aureus\trnascan_results_Aureus.txt -d results\result_aureus\tRNA_detailed_Aureus.csv -s results\result_aureus\tRNA_summary_Aureus.csv --profile phage_characterization\profiles\AureusPhage.yaml
+
+python S7_codon_trna_coverage.py --host host\Staphylococcus_aureus --trna results\result_aureus\tRNA_detailed_Aureus.csv -o results\result_aureus\codon_analysis --profile phage_characterization\profiles\AureusPhage.yaml
+
+python S7b_phage_codon_usage.py --phage-dir GenBank\AureusPhage --host host\Staphylococcus_aureus -o results\result_aureus\codon_analysis --profile phage_characterization\profiles\AureusPhage.yaml
 ```
 
 S7 computes host RSCU and maps each de novo tRNA anticodon to the codons it decodes.

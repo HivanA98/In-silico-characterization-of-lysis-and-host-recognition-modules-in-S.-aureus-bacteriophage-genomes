@@ -1,0 +1,62 @@
+cff-version: 1.2.0
+title: >-
+  Phage Characterization Toolkit v3.2 — Staphylococcus aureus release:
+  supplementary code and data for "In silico characterization of lysis and
+  host-recognition modules in Staphylococcus aureus bacteriophage genomes"
+message: >-
+  If you use this software or the data in this archive, please cite both the
+  archive (by its Zenodo DOI) and the associated manuscript.
+type: software
+authors:
+  - given-names: Ivan Armadi
+    family-names: Hasugian
+    email: hivanarmadi@gmail.com
+    affiliation: >-
+      Department of Biology, Faculty of Science and Technology,
+      Universitas Terbuka, Tangerang Selatan, Indonesia
+    orcid: 'https://orcid.org/0009-0006-7501-891X'
+  - given-names: "Na'ilah Insani"
+    family-names: Alifiyah
+    affiliation: >-
+      Department of Biology, Faculty of Science and Technology,
+      Universitas Terbuka, Tangerang Selatan, Indonesia
+    orcid: 'https://orcid.org/0009-0004-7956-9124'
+repository-code: >-
+  https://github.com/HivanA98/In-silico-characterization-of-lysis-and-host-recognition-modules-in-S.-aureus-bacteriophage-genomes
+abstract: >-
+  Code, genome records, host profile, alignments and intermediate results
+  required to reproduce every table and figure of a comparative genomic survey
+  of the lysis and host-recognition modules of 22 lytic Staphylococcus aureus
+  bacteriophages. The toolkit is a host-neutral engine plus a host profile:
+  stages S1-S4 extract genome statistics, holin and receptor-binding protein
+  calls, terminase sequences for phylogeny, and endolysin candidates for domain
+  validation; S4b measures per-domain pairwise identity; S6 and S7 cover de novo
+  tRNA prediction and host codon usage; S7b compares phage and host codon usage.
+  This release contains the Staphylococcus aureus profile only.
+keywords:
+  - bacteriophage
+  - Staphylococcus aureus
+  - comparative genomics
+  - endolysin
+  - receptor-binding protein
+  - terminase
+  - codon usage
+  - genome annotation
+license: GPL-3.0-or-later
+version: 3.2.0
+date-released: '2026-08-16'
+references:
+  - type: article
+    title: >-
+      In silico characterization of lysis and host-recognition modules in
+      Staphylococcus aureus bacteriophage genomes
+    authors:
+      - given-names: Ivan Armadi
+        family-names: Hasugian
+        orcid: 'https://orcid.org/0009-0006-7501-891X'
+      - given-names: "Na'ilah Insani"
+        family-names: Alifiyah
+        orcid: 'https://orcid.org/0009-0004-7956-9124'
+    journal: Memórias do Instituto Oswaldo Cruz
+    year: 2026
+    notes: 'Manuscript MIOC-2026-0245, under review'
