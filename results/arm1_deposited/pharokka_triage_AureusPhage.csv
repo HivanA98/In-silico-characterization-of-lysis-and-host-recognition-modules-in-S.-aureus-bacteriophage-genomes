@@ -1,0 +1,23 @@
+Accession,Organism,Genome_Size_bp,CDS_Count,Has_Structural,Has_Lysis,Needs_Pharokka,Trigger,Detail
+EU418428.2,Staphylococcus phage A5W,145542,232,No,Yes,No,—,annotation looks complete
+KY779849.1,Staphylococcus phage qdsa002,142499,231,Yes,Yes,No,—,annotation looks complete
+MF398190.1,Staphylococcus phage vB_SauM-fRuSau02,148464,236,Yes,Yes,No,—,annotation looks complete
+MH159197.1,Staphylococcus phage VB_SavM_JYL01,141384,219,Yes,Yes,No,—,annotation looks complete
+MN045228.1,Staphylococcus phage Maine,141712,219,Yes,Yes,No,—,annotation looks complete
+MN047438.1,Staphylococcus phage vB_SauM-515A1,148511,236,Yes,Yes,No,—,annotation looks complete
+MN150710.1,Staphylococcus phage vB_SauP-436A1,18028,21,Yes,Yes,No,—,annotation looks complete
+MN336261.1,Staphylococcus phage Sb1_8383,139606,167,Yes,Yes,No,—,annotation looks complete
+MN336262.1,Staphylococcus phage Sb1M_6168,138231,165,Yes,No,Yes,T2_no_lysis_gene,structural module present but 0 lysis-keyword CDS (annotation gap)
+MN336263.1,Staphylococcus phage Sb1M_9832,138231,164,Yes,No,Yes,T2_no_lysis_gene,structural module present but 0 lysis-keyword CDS (annotation gap)
+MT926124.1,Staphylococcus phage Portland,17471,20,Yes,Yes,No,—,annotation looks complete
+NC_007021.1,Staphylococcus phage Twort,130706,195,Yes,Yes,No,—,annotation looks complete
+NC_007056.1,Staphylococcus phage EW,45286,77,Yes,Yes,No,—,annotation looks complete
+NC_019726.1,Staphylococcus phage JD007,141836,217,Yes,Yes,No,—,annotation looks complete
+NC_021863.1,Staphylococcus phage SA13,42652,62,Yes,Yes,No,—,annotation looks complete
+NC_023009.1,Staphylococcus aureus bacteriophage Sb-1,127188,168,Yes,Yes,No,—,annotation looks complete
+NC_047722.1,Staphylococcus phage Staph1N,145647,232,No,Yes,No,—,annotation looks complete
+NC_047723.1,Staphylococcus phage A3R,141018,212,Yes,Yes,No,—,annotation looks complete
+NC_047724.1,Staphylococcus phage 676Z,148564,233,Yes,Yes,No,—,annotation looks complete
+NC_047725.1,Staphylococcus phage Fi200W,148481,233,No,Yes,No,—,annotation looks complete
+NC_047726.1,Staphylococcus phage MSA6,148243,232,No,Yes,No,—,annotation looks complete
+NC_047727.1,Staphylococcus phage P4W,147590,232,No,Yes,No,—,annotation looks complete

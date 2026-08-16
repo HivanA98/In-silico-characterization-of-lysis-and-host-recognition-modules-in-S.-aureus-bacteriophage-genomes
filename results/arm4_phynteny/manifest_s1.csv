@@ -1,0 +1,12 @@
+# phage characterization run manifest
+# script,S1_genome_statistics.py v3.0.0
+# profile,staphylococcus_aureus
+# phagecore,3.0.0 (phase-2-multihost)
+# python,3.12.10
+# biopython,1.87
+# pandas,3.0.3
+# platform,Windows-11-10.0.26200-SP0
+# run_utc,2026-08-12T23:30:23+00:00
+
+source_file,status,accession,organism,seq_len,n_cds,seq_md5,message
+GenBank\Phynteny\phynteny.gbk,ok,EU418428.2,EU418428.2 - Phynteny annotated genome,145542,270,6f1c9464a15d2f9559cb1ff100837d9f,

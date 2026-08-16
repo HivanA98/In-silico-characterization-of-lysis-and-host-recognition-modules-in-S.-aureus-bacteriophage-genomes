@@ -1,0 +1,23 @@
+Accession,Organism,Genome_Size_bp,CDS_Count,Has_Structural,Has_Lysis,Needs_Pharokka,Trigger,Detail
+EU418428.2,EU418428.2,145542,270,Yes,Yes,No,—,annotation looks complete
+KY779849.1,KY779849.1,142499,256,Yes,Yes,No,—,annotation looks complete
+MF398190.1,MF398190.1,148464,275,Yes,Yes,No,—,annotation looks complete
+MH159197.1,MH159197.1,141384,248,Yes,Yes,No,—,annotation looks complete
+MN045228.1,MN045228.1,141712,245,Yes,Yes,No,—,annotation looks complete
+MN047438.1,MN047438.1,148511,276,Yes,Yes,No,—,annotation looks complete
+MN150710.1,MN150710.1,18028,22,Yes,Yes,No,—,annotation looks complete
+MN336261.1,MN336261.1,139606,251,Yes,Yes,No,—,annotation looks complete
+MN336262.1,MN336262.1,138231,244,Yes,Yes,No,—,annotation looks complete
+MN336263.1,MN336263.1,138231,244,Yes,Yes,No,—,annotation looks complete
+MT926124.1,MT926124.1,17471,22,Yes,Yes,No,—,annotation looks complete
+NC_007021.1,NC_007021.1,130706,214,Yes,Yes,No,—,annotation looks complete
+NC_007056.1,NC_007056.1,45286,82,Yes,Yes,No,—,annotation looks complete
+NC_019726.1,NC_019726.1,141836,247,Yes,Yes,No,—,annotation looks complete
+NC_021863.1,NC_021863.1,42652,74,Yes,Yes,No,—,annotation looks complete
+NC_023009.1,NC_023009.1,127188,215,Yes,Yes,No,—,annotation looks complete
+NC_047722.1,NC_047722.1,145647,270,Yes,Yes,No,—,annotation looks complete
+NC_047723.1,NC_047723.1,141018,252,Yes,Yes,No,—,annotation looks complete
+NC_047724.1,NC_047724.1,148564,274,Yes,Yes,No,—,annotation looks complete
+NC_047725.1,NC_047725.1,148481,268,Yes,Yes,No,—,annotation looks complete
+NC_047726.1,NC_047726.1,148243,271,Yes,Yes,No,—,annotation looks complete
+NC_047727.1,NC_047727.1,147590,269,Yes,Yes,No,—,annotation looks complete

@@ -75,32 +75,39 @@ with the Python packages above and require no compilation.
 ## 3. Contents
 
 ```
-GenBank/AureusPhage/                22 deposited GenBank records, one genome per file
-GenBank/Aureus_Pharokka/            the same 22 genomes re-annotated (Pharokka -> Phold)
-GenBank/Aureus_Phynteny/            Phynteny output: ALL 22 genomes in ONE file
-host/Staphylococcus_aureus/         host genomes for the S7 codon reference
-phage_characterization/profiles/    AureusPhage.yaml — the host profile
-phagecore/                          shared engine
-S1..S7, S4b, S7b, validate_outputs  stage scripts
-results/result_aureus/              stage outputs (deposited-GenBank arm)
-results/result_aureus_pharokka/     stage outputs (Pharokka arm, Table III)
-results/result_aureus_phold/        stage outputs (Phold arm, Table III)
-results/result_aureus/interpro_endolysin/   InterPro TSV consumed by S4 --interpro
-results/result_aureus/interpro_rbp/         InterPro TSV consumed by S5 --interpro
-results/result_aureus/codon_analysis/       S7 and S7b tables
-results/result_aureus/endolysin_identity/   S4b matrices and domain alignments
-alignments/                         TerL FASTA and MAFFT alignment
-mega/                               Newick export, MEGA session, analysis summary, Figure 1 SVG
-viridic/                            intergenomic similarity matrix and heatmap
+code/S1..S7, S4b, S7b, validate_outputs.py  stage scripts
+code/phagecore/                     shared engine
+code/profiles/                      AureusPhage.yaml — the host profile
+data/genomes_deposited/             22 deposited GenBank records, one genome per file
+data/genomes_pharokka_phold/        the same 22 genomes re-annotated (Pharokka -> Phold)
+data/genomes_phynteny/              Phynteny output: ALL 22 genomes in ONE file
+data/host_genomes/                  host genomes for the S7 codon reference
+results/arm1_deposited/             stage outputs (deposited-GenBank arm)
+results/arm2_pharokka/              stage outputs (Pharokka arm, Table III)
+results/arm3_phold/                 stage outputs (Phold arm, Table III)
+results/arm4_phynteny/              stage outputs (Phynteny arm, Supplementary Table S1)
+results/arm1_deposited/interpro_endolysin/   InterPro TSV consumed by S4 --interpro
+results/arm1_deposited/interpro_rbp/         InterPro TSV consumed by S5 --interpro
+results/arm1_deposited/codon_analysis/       S7 tables (S7b tables not yet deposited, see MANIFEST.md)
+analysis/alignments/terl/           TerL FASTA and MAFFT alignment
+analysis/alignments/endolysin_domains/      S4b domain boundaries and MAFFT alignments
+analysis/interpro/                  InterPro TSV copies (endolysin, RBP)
+analysis/phylogeny_mega/            Newick export, MEGA session, analysis summary, Figure 1
+analysis/viridic/                   intergenomic similarity matrix and heatmap
+analysis/codon/                     manuscript-facing copy of the S7 tables
+manuscript_tables/                  the exact tables printed in the manuscript, as copies
+MANIFEST.md                         maps every manuscript table/figure to its file(s)
 ```
 
 The directory names follow the pipeline's own convention: input genomes under
-`GenBank/<Group>/`, host genomes under `host/<species>/`, and one `results/result_<x>/`
-folder per annotation arm. Each stage writes a named file inside that folder, so an
-output can always be traced back to the command that produced it.
+`data/genomes_<source>/`, host genomes under `data/host_genomes/`, and one
+`results/arm<N>_<source>/` folder per annotation arm. Each stage writes a named file
+inside that folder, so an output can always be traced back to the command that
+produced it. `analysis/` and `manuscript_tables/` hold copies of selected outputs,
+organised for a reader rather than by pipeline run; see `MANIFEST.md`.
 
-**`GenBank/Aureus_Phynteny/phynteny.gbk` holds all 22 genomes in a single file.** The stage
-scripts take one genome per file (`phagecore/genbank_io.py` reads the first record of
+**`data/genomes_phynteny/phynteny.gbk` holds all 22 genomes in a single file.** The stage
+scripts take one genome per file (`code/phagecore/genbank_io.py` reads the first record of
 each file), so this file must be split before it can be used as input. It is deposited
 in the form Phynteny writes it.
 
@@ -108,18 +115,18 @@ in the form Phynteny writes it.
 
 ## 4. Reproducing the manuscript
 
-Input convention: phage genomes in `GenBank/AureusPhage/`, host genomes in
-`host/Staphylococcus_aureus/`, outputs in `results/result_aureus/`. Commands are given
+Input convention: phage genomes in `data\genomes_deposited\`, host genomes in
+`data\host_genomes\`, outputs in `results\arm1_deposited\`. Commands are given
 as single lines for Windows Command Prompt, matching the pipeline's own CLI record.
 
 ### Table I
 
 ```
-mkdir results\result_aureus
-mkdir results\result_aureus\interpro_endolysin
-mkdir results\result_aureus\interpro_rbp
+mkdir results\arm1_deposited
+mkdir results\arm1_deposited\interpro_endolysin
+mkdir results\arm1_deposited\interpro_rbp
 
-python S1_genome_statistics.py -i GenBank\AureusPhage -o results\result_aureus\Table1_AureusPhage.csv --profile phage_characterization\profiles\AureusPhage.yaml --manifest results\result_aureus\manifest_s1.csv
+python code\S1_genome_statistics.py -i data\genomes_deposited -o results\arm1_deposited\Table1_AureusPhage.csv --profile code\profiles\AureusPhage.yaml --manifest results\arm1_deposited\manifest_s1.csv
 ```
 
 Every stage writes to an explicit **file** path, not a directory. The one exception is
@@ -133,7 +140,7 @@ family *Unassigned* and flagged `family_unresolved_verify_ICTV` rather than left
 ### Table II — holin and RBP columns
 
 ```
-python S2_holin_rbp_annotation.py -i GenBank\AureusPhage -o results\result_aureus\Table2_holin_rbp_AureusPhage.csv --profile phage_characterization\profiles\AureusPhage.yaml
+python code\S2_holin_rbp_annotation.py -i data\genomes_deposited -o results\arm1_deposited\Table2_holin_rbp_AureusPhage.csv --profile code\profiles\AureusPhage.yaml
 ```
 
 Holin and RBP presence are called from the wording of the CDS `product` qualifier
@@ -148,14 +155,14 @@ in essentially every tailed phage and would make the column uninformative.
 Pass 1 — collect candidates and write the unique-sequence FASTA for InterPro:
 
 ```
-python S4_endolysin_extractor.py -i GenBank\AureusPhage -o results\result_aureus\endolysin_candidates_AureusPhage.faa --output-unique results\result_aureus\endolysin_unique_AureusPhage.faa --csv results\result_aureus\endolysin_audit_AureusPhage.csv --pharokka-triage results\result_aureus\pharokka_triage_AureusPhage.csv --profile phage_characterization\profiles\AureusPhage.yaml --manifest results\result_aureus\manifest_s4.csv
+python code\S4_endolysin_extractor.py -i data\genomes_deposited -o results\arm1_deposited\endolysin_candidates_AureusPhage.faa --output-unique results\arm1_deposited\endolysin_unique_AureusPhage.faa --csv results\arm1_deposited\endolysin_audit_AureusPhage.csv --pharokka-triage results\arm1_deposited\pharokka_triage_AureusPhage.csv --profile code\profiles\AureusPhage.yaml --manifest results\arm1_deposited\manifest_s4.csv
 ```
 
 Submit `endolysin_unique_AureusPhage.faa` to InterPro and save every result batch into
-`results\result_aureus\interpro_endolysin\`. Pass 2 — reconcile the domains:
+`results\arm1_deposited\interpro_endolysin\`. Pass 2 — reconcile the domains:
 
 ```
-python S4_endolysin_extractor.py -i GenBank\AureusPhage -o results\result_aureus\endolysin_candidates_AureusPhage.faa --output-unique results\result_aureus\endolysin_unique_AureusPhage.faa --csv results\result_aureus\endolysin_audit_AureusPhage.csv --interpro results\result_aureus\interpro_endolysin\ --profile phage_characterization\profiles\AureusPhage.yaml --manifest results\result_aureus\manifest_s4.csv
+python code\S4_endolysin_extractor.py -i data\genomes_deposited -o results\arm1_deposited\endolysin_candidates_AureusPhage.faa --output-unique results\arm1_deposited\endolysin_unique_AureusPhage.faa --csv results\arm1_deposited\endolysin_audit_AureusPhage.csv --interpro results\arm1_deposited\interpro_endolysin\ --profile code\profiles\AureusPhage.yaml --manifest results\arm1_deposited\manifest_s4.csv
 ```
 
 The script collects **every** lysis-keyword CDS and ranks them, rather than taking the
@@ -192,7 +199,7 @@ be repeated independently.
 ### Supplementary Table S4 — per-domain identity
 
 ```
-python S4b_endolysin_domain_identity.py --faa results\result_aureus\endolysin_unique_AureusPhage_confirmed.faa --interpro results\result_aureus\interpro_endolysin\endolysin_unique_AureusPhage.tsv -o results\result_aureus\endolysin_identity --profile phage_characterization\profiles\AureusPhage.yaml --status free-endolysin
+python code\S4b_endolysin_domain_identity.py --faa results\arm1_deposited\endolysin_unique_AureusPhage_confirmed.faa --interpro results\arm1_deposited\interpro_endolysin\endolysin_unique_AureusPhage.tsv -o analysis\alignments\endolysin_domains\endolysin_identity_canonical --profile code\profiles\AureusPhage.yaml --status free-endolysin
 ```
 
 Domain boundaries are **read from the InterPro output already used for Table II**, not
@@ -211,7 +218,7 @@ web-server result as `<domain>.aln.faa`.
 ### Figure 1 — TerL phylogeny
 
 ```
-python S3_terl_extractor.py -i GenBank\AureusPhage -o results\result_aureus\TerL_combined_AureusPhage.faa
+python code\S3_terl_extractor.py -i data\genomes_deposited -o results\arm1_deposited\TerL_combined_AureusPhage.faa
 ```
 
 S3 takes no profile: the terminase large subunit is universal.
@@ -251,7 +258,7 @@ MEGA 12.1.2 -> Phylogeny -> Construct/Test Maximum Likelihood Tree
   Threads                   : 12
 ```
 
-Run statistics from the MEGA session (`Mega Phylogeny Result/`): 20 taxa, 519 sites,
+Run statistics from the MEGA session (`analysis/phylogeny_mega/`): 20 taxa, 519 sites,
 516 common sites, 118 invariant sites, lnL −3926.043, BIC 8210.524, AICc 7930.405,
 sum of branch lengths 4.662.
 
@@ -261,18 +268,18 @@ S6 runs in two passes around the external tRNAscan-SE step. Pass 1 writes the in
 FASTA; pass 2 reads the tRNAscan-SE output back:
 
 ```
-python S6_tRNA_analyzer.py -i GenBank\AureusPhage -o results\result_aureus\trnascan_input_Aureus.fasta --profile phage_characterization\profiles\AureusPhage.yaml
+python code\S6_tRNA_analyzer.py -i data\genomes_deposited -o results\arm1_deposited\trnascan_input_Aureus.fasta --profile code\profiles\AureusPhage.yaml
 ```
 
 Run tRNAscan-SE 2.0 on that FASTA and save the raw output as
-`results\result_aureus\trnascan_results_Aureus.txt`, then:
+`results\arm1_deposited\trnascan_results_Aureus.txt`, then:
 
 ```
-python S6_tRNA_analyzer.py -i GenBank\AureusPhage --results results\result_aureus\trnascan_results_Aureus.txt -d results\result_aureus\tRNA_detailed_Aureus.csv -s results\result_aureus\tRNA_summary_Aureus.csv --profile phage_characterization\profiles\AureusPhage.yaml
+python code\S6_tRNA_analyzer.py -i data\genomes_deposited --results results\arm1_deposited\trnascan_results_Aureus.txt -d results\arm1_deposited\tRNA_detailed_Aureus.csv -s results\arm1_deposited\tRNA_summary_Aureus.csv --profile code\profiles\AureusPhage.yaml
 
-python S7_codon_trna_coverage.py --host host\Staphylococcus_aureus --trna results\result_aureus\tRNA_detailed_Aureus.csv -o results\result_aureus\codon_analysis --profile phage_characterization\profiles\AureusPhage.yaml
+python code\S7_codon_trna_coverage.py --host data\host_genomes --trna results\arm1_deposited\tRNA_detailed_Aureus.csv -o results\arm1_deposited\codon_analysis --profile code\profiles\AureusPhage.yaml
 
-python S7b_phage_codon_usage.py --phage-dir GenBank\AureusPhage --host host\Staphylococcus_aureus -o results\result_aureus\codon_analysis --profile phage_characterization\profiles\AureusPhage.yaml
+python code\S7b_phage_codon_usage.py --phage-dir data\genomes_deposited --host data\host_genomes -o results\arm1_deposited\codon_analysis --profile code\profiles\AureusPhage.yaml
 ```
 
 S7 computes host RSCU and maps each de novo tRNA anticodon to the codons it decodes.
@@ -283,7 +290,7 @@ RSCU definition cannot differ between host and phage. Similarity is computed ove
 being invariant at RSCU = 1.
 
 **Host set.** Codon usage is a species-level property, so counts are summed across the
-files in `host/Staphylococcus_aureus/`. That directory contains six files representing
+files in `data\host_genomes\`. That directory contains six files representing
 **five** distinct strains: `GCA_002310435.gbff` (CP023390.1) and `GCF_002310435.gbff`
 (NZ_CP023390.1) are the GenBank and RefSeq copies of the same 2,878,897-bp assembly,
 so that strain contributes twice. The redundancy was present in the run reported in the
@@ -316,7 +323,7 @@ names: keyword sets, InterPro protocol and curation funnel are identical.
 
 ## 5. The profile
 
-`phage_characterization/profiles/AureusPhage.yaml` carries every host-specific value
+`code/profiles/AureusPhage.yaml` carries every host-specific value
 used by the analysis, and it is deposited in full so that each call is auditable:
 
 - QC plausibility envelope — genome size 15–300 kb, GC 24–38 %, minimum genome size

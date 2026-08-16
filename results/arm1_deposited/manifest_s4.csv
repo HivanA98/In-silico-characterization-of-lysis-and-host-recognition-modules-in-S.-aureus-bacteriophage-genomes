@@ -1,0 +1,36 @@
+# phage characterization run manifest
+# script,S4_endolysin_extractor.py v3.0.0
+# profile,staphylococcus_aureus
+# phagecore,3.0.0 (phase-2-multihost)
+# python,3.12.10
+# biopython,1.87
+# pandas,3.0.3
+# platform,Windows-11-10.0.26200-SP0
+# run_utc,2026-08-11T10:10:29+00:00
+# selected,18
+# unique_sequences,11
+# genomes_without_endolysin,4
+
+source_file,status,accession,organism,seq_len,n_cds,seq_md5,message
+GenBank\Aureus_Pharokka\EU418428_Aureus_phage_A5W.gb,ok,EU418428.2,Staphylococcus phage A5W,145542,232,,
+GenBank\Aureus_Pharokka\KY779849_Aureus_phage_qdsa002.gb,ok,KY779849.1,Staphylococcus phage qdsa002,142499,231,,
+GenBank\Aureus_Pharokka\MF398190_Aureus_phage_vB_SauM-fRuSau02.gb,ok,MF398190.1,Staphylococcus phage vB_SauM-fRuSau02,148464,236,,
+GenBank\Aureus_Pharokka\MH159197_Aureus_phage_VB_SavM_JYL01.gb,ok,MH159197.1,Staphylococcus phage VB_SavM_JYL01,141384,219,,
+GenBank\Aureus_Pharokka\MN045228_Aureus_phage_Maine.gb,ok,MN045228.1,Staphylococcus phage Maine,141712,219,,
+GenBank\Aureus_Pharokka\MN047438_Aureus_phage_vB_SauM-515A1.gb,ok,MN047438.1,Staphylococcus phage vB_SauM-515A1,148511,236,,
+GenBank\Aureus_Pharokka\MN150710_Aureus_phage_vB_SauP-436A1.gb,ok,MN150710.1,Staphylococcus phage vB_SauP-436A1,18028,21,,
+GenBank\Aureus_Pharokka\MN336261_Aureus_phage_Sb1_8383.gb,ok,MN336261.1,Staphylococcus phage Sb1_8383,139606,167,,
+GenBank\Aureus_Pharokka\MN336262_Aureus_phage_Sb1M_6168.gb,ok,MN336262.1,Staphylococcus phage Sb1M_6168,138231,165,,
+GenBank\Aureus_Pharokka\MN336263_Aureus_phage_Sb1M_9832.gb,ok,MN336263.1,Staphylococcus phage Sb1M_9832,138231,164,,
+GenBank\Aureus_Pharokka\MT926124_Aureus_phage_Portland.gb,ok,MT926124.1,Staphylococcus phage Portland,17471,20,,
+GenBank\Aureus_Pharokka\NC_007021_Aureus_phage_Twort.gb,ok,NC_007021.1,Staphylococcus phage Twort,130706,195,,
+GenBank\Aureus_Pharokka\NC_007056_Aureus_phage_EW.gb,ok,NC_007056.1,Staphylococcus phage EW,45286,77,,
+GenBank\Aureus_Pharokka\NC_019726_Aureus_phage_JD007.gb,ok,NC_019726.1,Staphylococcus phage JD007,141836,217,,
+GenBank\Aureus_Pharokka\NC_021863_Aureus_phage_SA13.gb,ok,NC_021863.1,Staphylococcus phage SA13,42652,62,,
+GenBank\Aureus_Pharokka\NC_023009_Aureus_phage_Sb-1.gb,ok,NC_023009.1,Staphylococcus aureus bacteriophage Sb-1,127188,168,,
+GenBank\Aureus_Pharokka\NC_047722_Aureus_phage_Staph1N.gb,ok,NC_047722.1,Staphylococcus phage Staph1N,145647,232,,
+GenBank\Aureus_Pharokka\NC_047723_Aureus_phage_A3R.gb,ok,NC_047723.1,Staphylococcus phage A3R,141018,212,,
+GenBank\Aureus_Pharokka\NC_047724_Aureus_phage_676Z.gb,ok,NC_047724.1,Staphylococcus phage 676Z,148564,233,,
+GenBank\Aureus_Pharokka\NC_047725_Aureus_phage_Fi200W.gb,ok,NC_047725.1,Staphylococcus phage Fi200W,148481,233,,
+GenBank\Aureus_Pharokka\NC_047726_Aureus_phage_MSA6.gb,ok,NC_047726.1,Staphylococcus phage MSA6,148243,232,,
+GenBank\Aureus_Pharokka\NC_047727_Aureus_phage_P4W.gb,ok,NC_047727.1,Staphylococcus phage P4W,147590,232,,

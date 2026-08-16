@@ -1,0 +1,87 @@
+Phage,Accession,tRNA_Type,Anticodon_Seq,Anticodon_Source,Decoded_Codon,Amino_Acid,Synonymous_Family_Size,Host_RSCU,Is_Rare_in_Host,Coverage_Note
+EU418428.2 - Phynteny annotated genome,EU418428.2,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+EU418428.2 - Phynteny annotated genome,EU418428.2,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+EU418428.2 - Phynteny annotated genome,EU418428.2,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+EU418428.2 - Phynteny annotated genome,EU418428.2,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+EU418428.2 - Phynteny annotated genome,EU418428.2,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+KY779849.1 - Phynteny annotated genome,KY779849.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+KY779849.1 - Phynteny annotated genome,KY779849.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+KY779849.1 - Phynteny annotated genome,KY779849.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+KY779849.1 - Phynteny annotated genome,KY779849.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+KY779849.1 - Phynteny annotated genome,KY779849.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+MF398190.1 - Phynteny annotated genome,MF398190.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+MF398190.1 - Phynteny annotated genome,MF398190.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+MF398190.1 - Phynteny annotated genome,MF398190.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+MF398190.1 - Phynteny annotated genome,MF398190.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+MF398190.1 - Phynteny annotated genome,MF398190.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+MH159197.1 - Phynteny annotated genome,MH159197.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+MH159197.1 - Phynteny annotated genome,MH159197.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+MH159197.1 - Phynteny annotated genome,MH159197.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+MH159197.1 - Phynteny annotated genome,MH159197.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+MH159197.1 - Phynteny annotated genome,MH159197.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+MN045228.1 - Phynteny annotated genome,MN045228.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+MN045228.1 - Phynteny annotated genome,MN045228.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+MN045228.1 - Phynteny annotated genome,MN045228.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+MN045228.1 - Phynteny annotated genome,MN045228.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+MN045228.1 - Phynteny annotated genome,MN045228.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+MN047438.1 - Phynteny annotated genome,MN047438.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+MN047438.1 - Phynteny annotated genome,MN047438.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+MN047438.1 - Phynteny annotated genome,MN047438.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+MN047438.1 - Phynteny annotated genome,MN047438.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+MN047438.1 - Phynteny annotated genome,MN047438.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+MN336261.1 - Phynteny annotated genome,MN336261.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+MN336261.1 - Phynteny annotated genome,MN336261.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+MN336261.1 - Phynteny annotated genome,MN336261.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+MN336261.1 - Phynteny annotated genome,MN336261.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+MN336261.1 - Phynteny annotated genome,MN336261.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+MN336262.1 - Phynteny annotated genome,MN336262.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+MN336262.1 - Phynteny annotated genome,MN336262.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+MN336262.1 - Phynteny annotated genome,MN336262.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+MN336262.1 - Phynteny annotated genome,MN336262.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+MN336262.1 - Phynteny annotated genome,MN336262.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+MN336263.1 - Phynteny annotated genome,MN336263.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+MN336263.1 - Phynteny annotated genome,MN336263.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+MN336263.1 - Phynteny annotated genome,MN336263.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+MN336263.1 - Phynteny annotated genome,MN336263.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+MN336263.1 - Phynteny annotated genome,MN336263.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+NC_007021.1 - Phynteny annotated genome,NC_007021.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+NC_019726.1 - Phynteny annotated genome,NC_019726.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+NC_019726.1 - Phynteny annotated genome,NC_019726.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+NC_019726.1 - Phynteny annotated genome,NC_019726.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+NC_019726.1 - Phynteny annotated genome,NC_019726.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+NC_019726.1 - Phynteny annotated genome,NC_019726.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+NC_023009.1 - Phynteny annotated genome,NC_023009.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+NC_023009.1 - Phynteny annotated genome,NC_023009.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+NC_023009.1 - Phynteny annotated genome,NC_023009.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+NC_023009.1 - Phynteny annotated genome,NC_023009.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+NC_023009.1 - Phynteny annotated genome,NC_023009.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+NC_047722.1 - Phynteny annotated genome,NC_047722.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+NC_047722.1 - Phynteny annotated genome,NC_047722.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+NC_047722.1 - Phynteny annotated genome,NC_047722.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+NC_047722.1 - Phynteny annotated genome,NC_047722.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+NC_047722.1 - Phynteny annotated genome,NC_047722.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+NC_047723.1 - Phynteny annotated genome,NC_047723.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+NC_047723.1 - Phynteny annotated genome,NC_047723.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+NC_047723.1 - Phynteny annotated genome,NC_047723.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+NC_047723.1 - Phynteny annotated genome,NC_047723.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+NC_047723.1 - Phynteny annotated genome,NC_047723.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+NC_047724.1 - Phynteny annotated genome,NC_047724.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+NC_047724.1 - Phynteny annotated genome,NC_047724.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+NC_047724.1 - Phynteny annotated genome,NC_047724.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+NC_047724.1 - Phynteny annotated genome,NC_047724.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+NC_047724.1 - Phynteny annotated genome,NC_047724.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+NC_047725.1 - Phynteny annotated genome,NC_047725.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+NC_047725.1 - Phynteny annotated genome,NC_047725.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+NC_047725.1 - Phynteny annotated genome,NC_047725.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+NC_047725.1 - Phynteny annotated genome,NC_047725.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+NC_047725.1 - Phynteny annotated genome,NC_047725.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+NC_047726.1 - Phynteny annotated genome,NC_047726.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+NC_047726.1 - Phynteny annotated genome,NC_047726.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+NC_047726.1 - Phynteny annotated genome,NC_047726.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+NC_047726.1 - Phynteny annotated genome,NC_047726.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+NC_047726.1 - Phynteny annotated genome,NC_047726.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+NC_047727.1 - Phynteny annotated genome,NC_047727.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+NC_047727.1 - Phynteny annotated genome,NC_047727.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+NC_047727.1 - Phynteny annotated genome,NC_047727.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+NC_047727.1 - Phynteny annotated genome,NC_047727.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+NC_047727.1 - Phynteny annotated genome,NC_047727.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"

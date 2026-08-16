@@ -1,0 +1,36 @@
+# phage characterization run manifest
+# script,S4_endolysin_extractor.py v3.0.0
+# profile,staphylococcus_aureus
+# phagecore,3.0.0 (phase-2-multihost)
+# python,3.12.10
+# biopython,1.87
+# pandas,3.0.3
+# platform,Windows-11-10.0.26200-SP0
+# run_utc,2026-08-11T09:09:45+00:00
+# selected,18
+# unique_sequences,8
+# genomes_without_endolysin,4
+
+source_file,status,accession,organism,seq_len,n_cds,seq_md5,message
+GenBank\Phage_Aureus\EU418428_Aureus_phage_A5W.gbk,ok,EU418428.2,EU418428.2,145542,270,,
+GenBank\Phage_Aureus\KY779849_Aureus_phage_qdsa002.gbk,ok,KY779849.1,KY779849.1,142499,256,,
+GenBank\Phage_Aureus\MF398190_Aureus_phage_vB_SauM-fRuSau02.gbk,ok,MF398190.1,MF398190.1,148464,275,,
+GenBank\Phage_Aureus\MH159197_Aureus_phage_VB_SavM_JYL01.gbk,ok,MH159197.1,MH159197.1,141384,248,,
+GenBank\Phage_Aureus\MN045228_Aureus_phage_Maine.gbk,ok,MN045228.1,MN045228.1,141712,245,,
+GenBank\Phage_Aureus\MN047438_Aureus_phage_vB_SauM-515A1.gbk,ok,MN047438.1,MN047438.1,148511,276,,
+GenBank\Phage_Aureus\MN150710_Aureus_phage_vB_SauP-436A1.gbk,ok,MN150710.1,MN150710.1,18028,22,,
+GenBank\Phage_Aureus\MN336261_Aureus_phage_Sb1_8383.gbk,ok,MN336261.1,MN336261.1,139606,251,,
+GenBank\Phage_Aureus\MN336262_Aureus_phage_Sb1M_6168.gbk,ok,MN336262.1,"MN336262.1 Staphylococcus phage Sb1M_6168, complete genome",138231,244,,
+GenBank\Phage_Aureus\MN336263_Aureus_phage_Sb1M_9832.gbk,ok,MN336263.1,"MN336263.1 Staphylococcus phage Sb1M_9832, complete genome",138231,244,,
+GenBank\Phage_Aureus\MT926124_Aureus_phage_Portland.gbk,ok,MT926124.1,MT926124.1,17471,22,,
+GenBank\Phage_Aureus\NC_007021_Aureus_phage_Twort.gbk,ok,NC_007021.1,NC_007021.1,130706,214,,
+GenBank\Phage_Aureus\NC_007056_Aureus_phage_EW.gbk,ok,NC_007056.1,NC_007056.1,45286,82,,
+GenBank\Phage_Aureus\NC_019726_Aureus_phage_JD007.gbk,ok,NC_019726.1,NC_019726.1,141836,247,,
+GenBank\Phage_Aureus\NC_021863_Aureus_phage_SA13.gbk,ok,NC_021863.1,NC_021863.1,42652,74,,
+GenBank\Phage_Aureus\NC_023009_Aureus_phage_Sb-1.gbk,ok,NC_023009.1,NC_023009.1,127188,215,,
+GenBank\Phage_Aureus\NC_047722_Aureus_phage_Staph1N.gbk,ok,NC_047722.1,NC_047722.1,145647,270,,
+GenBank\Phage_Aureus\NC_047723_Aureus_phage_A3R.gbk,ok,NC_047723.1,NC_047723.1,141018,252,,
+GenBank\Phage_Aureus\NC_047724_Aureus_phage_676Z.gbk,ok,NC_047724.1,NC_047724.1,148564,274,,
+GenBank\Phage_Aureus\NC_047725_Aureus_phage_Fi200W.gbk,ok,NC_047725.1,NC_047725.1,148481,268,,
+GenBank\Phage_Aureus\NC_047726_Aureus_phage_MSA6.gbk,ok,NC_047726.1,NC_047726.1,148243,271,,
+GenBank\Phage_Aureus\NC_047727_Aureus_phage_P4W.gbk,ok,NC_047727.1,NC_047727.1,147590,269,,

@@ -1,0 +1,10 @@
+Phage,Accession,Protein_ID,Product,Length_aa,Inferred_Domain,InterPro_Domain,InterPro_Verdict,Classification,Selected,tBLASTn_Identity_pct,tBLASTn_Note,Runtime_Flag,shared_by,Evidence
+EU418428.2 - Phynteny annotated genome,EU418428.2,EU418428.2_86,endolysin,209,LysK-type (unspecified),"consensus disorder prediction, Bacterial SH3 domain, IPR003646, SH3-like domain, bacterial-type, sh3_bac_9, IPR036505, N-acetylmuramoyl-L-alanine amidase/PGRP domain superfamily, N-acetylmuramoyl-L-alanine amidase-like, N-acetylmuramoyl-L-alanine amidase, SH3 Domains",confirmed-endolysin,free-endolysin,Yes,,,,,matched 'endolysin'; inferred LysK-type (unspecified); free-endolysin (top of 9 candidate(s))
+EU418428.2 - Phynteny annotated genome,EU418428.2,EU418428.2_90,endolysin,267,LysK-type (unspecified),,,free-endolysin,No,,,,,
+EU418428.2 - Phynteny annotated genome,EU418428.2,EU418428.2_101,hemolysin,110,LysK-type (unspecified),,,free-endolysin,No,,,,,
+EU418428.2 - Phynteny annotated genome,EU418428.2,EU418428.2_131,tail assembly chaperone,152,CHAP,,,non-endolysin,No,,,,,
+EU418428.2 - Phynteny annotated genome,EU418428.2,EU418428.2_133,tail associated lysin,1352,LysK-type (unspecified),,,vaph,No,,,,,
+EU418428.2 - Phynteny annotated genome,EU418428.2,EU418428.2_134,tail protein with lysin activity,808,LysK-type (unspecified),,,vaph,No,,,,,
+EU418428.2 - Phynteny annotated genome,EU418428.2,EU418428.2_135,tail protein with lysin activity,295,LysK-type (unspecified),,,vaph,No,,,,,
+EU418428.2 - Phynteny annotated genome,EU418428.2,EU418428.2_219,carboxypeptidase,87,Peptidase (unspecified — verify),,,uncertain,No,,,,,
+EU418428.2 - Phynteny annotated genome,EU418428.2,EU418428.2_234,endolysin,169,LysK-type (unspecified),,,free-endolysin,No,,,,,

@@ -1,0 +1,87 @@
+Phage,Accession,tRNA_Type,Anticodon_Seq,Anticodon_Source,Decoded_Codon,Amino_Acid,Synonymous_Family_Size,Host_RSCU,Is_Rare_in_Host,Coverage_Note
+Staphylococcus phage A5W,EU418428.2,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+Staphylococcus phage A5W,EU418428.2,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage A5W,EU418428.2,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage A5W,EU418428.2,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage A5W,EU418428.2,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+Staphylococcus phage qdsa002,KY779849.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+Staphylococcus phage qdsa002,KY779849.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage qdsa002,KY779849.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage qdsa002,KY779849.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage qdsa002,KY779849.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+Staphylococcus phage vB_SauM-fRuSau02,MF398190.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+Staphylococcus phage vB_SauM-fRuSau02,MF398190.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage vB_SauM-fRuSau02,MF398190.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage vB_SauM-fRuSau02,MF398190.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage vB_SauM-fRuSau02,MF398190.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+Staphylococcus phage VB_SavM_JYL01,MH159197.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+Staphylococcus phage VB_SavM_JYL01,MH159197.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+Staphylococcus phage VB_SavM_JYL01,MH159197.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage VB_SavM_JYL01,MH159197.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage VB_SavM_JYL01,MH159197.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Maine,MN045228.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Maine,MN045228.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Maine,MN045228.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Maine,MN045228.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Maine,MN045228.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+Staphylococcus phage vB_SauM-515A1,MN047438.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+Staphylococcus phage vB_SauM-515A1,MN047438.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage vB_SauM-515A1,MN047438.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage vB_SauM-515A1,MN047438.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage vB_SauM-515A1,MN047438.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+Staphylococcus phage Sb1_8383,MN336261.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Sb1_8383,MN336261.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Sb1_8383,MN336261.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Sb1_8383,MN336261.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Sb1_8383,MN336261.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+Staphylococcus phage Sb1M_6168,MN336262.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Sb1M_6168,MN336262.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Sb1M_6168,MN336262.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Sb1M_6168,MN336262.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Sb1M_6168,MN336262.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+Staphylococcus phage Sb1M_9832,MN336263.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Sb1M_9832,MN336263.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Sb1M_9832,MN336263.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Sb1M_9832,MN336263.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Sb1M_9832,MN336263.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+Staphylococcus phage Twort,NC_007021.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+Staphylococcus phage JD007,NC_019726.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+Staphylococcus phage JD007,NC_019726.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage JD007,NC_019726.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage JD007,NC_019726.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage JD007,NC_019726.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+Staphylococcus aureus bacteriophage Sb-1,NC_023009.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+Staphylococcus aureus bacteriophage Sb-1,NC_023009.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+Staphylococcus aureus bacteriophage Sb-1,NC_023009.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+Staphylococcus aureus bacteriophage Sb-1,NC_023009.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+Staphylococcus aureus bacteriophage Sb-1,NC_023009.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+Staphylococcus phage Staph1N,NC_047722.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Staph1N,NC_047722.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Staph1N,NC_047722.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Staph1N,NC_047722.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Staph1N,NC_047722.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+Staphylococcus phage A3R,NC_047723.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+Staphylococcus phage A3R,NC_047723.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage A3R,NC_047723.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage A3R,NC_047723.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage A3R,NC_047723.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+Staphylococcus phage 676Z,NC_047724.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+Staphylococcus phage 676Z,NC_047724.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage 676Z,NC_047724.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage 676Z,NC_047724.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage 676Z,NC_047724.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+Staphylococcus phage Fi200W,NC_047725.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Fi200W,NC_047725.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Fi200W,NC_047725.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Fi200W,NC_047725.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage Fi200W,NC_047725.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+Staphylococcus phage MSA6,NC_047726.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+Staphylococcus phage MSA6,NC_047726.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage MSA6,NC_047726.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage MSA6,NC_047726.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage MSA6,NC_047726.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"
+Staphylococcus phage P4W,NC_047727.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAC,Asp,2,0.4346,Yes,generic wobble decoding from de-novo anticodon
+Staphylococcus phage P4W,NC_047727.1,Asp,GTC,de-novo tRNAscan-SE (S6),GAT,Asp,2,1.5654,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage P4W,NC_047727.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTC,Phe,2,0.5366,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage P4W,NC_047727.1,Phe,GAA,de-novo tRNAscan-SE (S6),TTT,Phe,2,1.4634,No,generic wobble decoding from de-novo anticodon
+Staphylococcus phage P4W,NC_047727.1,Ile2,CAT,de-novo tRNAscan-SE (S6),ATA,Ile,3,0.6607,No,"Ile2-CAT: lysidine(k2C) modification re-codes C34 to read ATA (Ile), not ATG"

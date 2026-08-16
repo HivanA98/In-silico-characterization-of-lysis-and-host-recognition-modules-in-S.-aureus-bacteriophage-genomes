@@ -1,0 +1,15 @@
+Accession,Organism,N_RBP_Candidates,Largest_Carrier_aa,Has_Enzyme_Term,Has_Depol_Verdict,Needs_Pharokka,Trigger,Detail
+EU418428.2,Staphylococcus phage A5W,2,302,No,No,Yes,R2_no_domain_evidence,every RBP candidate is no_domain in InterPro
+MF398190.1,Staphylococcus phage vB_SauM-fRuSau02,2,640,No,No,No,—,RBP annotation looks usable
+MH159197.1,Staphylococcus phage VB_SavM_JYL01,1,458,No,No,No,—,RBP annotation looks usable
+MN045228.1,Staphylococcus phage Maine,2,458,Yes,No,No,—,RBP annotation looks usable
+MN047438.1,Staphylococcus phage vB_SauM-515A1,2,640,No,No,No,—,RBP annotation looks usable
+MN150710.1,Staphylococcus phage vB_SauP-436A1,2,587,No,No,No,—,RBP annotation looks usable
+MT926124.1,Staphylococcus phage Portland,3,647,No,No,No,—,RBP annotation looks usable
+NC_007021.1,Staphylococcus phage Twort,3,442,No,No,No,—,RBP annotation looks usable
+NC_007056.1,Staphylococcus phage EW,2,576,Yes,No,No,—,RBP annotation looks usable
+NC_019726.1,Staphylococcus phage JD007,3,458,No,No,No,—,RBP annotation looks usable
+NC_021863.1,Staphylococcus phage SA13,2,390,No,No,No,—,RBP annotation looks usable
+NC_023009.1,Staphylococcus aureus bacteriophage Sb-1,3,458,No,No,No,—,RBP annotation looks usable
+NC_047722.1,Staphylococcus phage Staph1N,2,302,No,No,Yes,R2_no_domain_evidence,every RBP candidate is no_domain in InterPro
+NC_047723.1,Staphylococcus phage A3R,2,302,No,No,Yes,R2_no_domain_evidence,every RBP candidate is no_domain in InterPro

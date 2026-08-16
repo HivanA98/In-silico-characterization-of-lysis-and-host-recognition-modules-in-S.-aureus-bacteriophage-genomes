@@ -1,0 +1,21 @@
+Accession,Organism,N_RBP_Candidates,Largest_Carrier_aa,Has_Enzyme_Term,Has_Depol_Verdict,Needs_Pharokka,Trigger,Detail
+EU418428.2,EU418428.2,3,458,No,No,No,—,RBP annotation looks usable
+KY779849.1,KY779849.1,3,458,No,No,No,—,RBP annotation looks usable
+MF398190.1,MF398190.1,3,458,No,No,No,—,RBP annotation looks usable
+MH159197.1,MH159197.1,3,458,No,No,No,—,RBP annotation looks usable
+MN045228.1,MN045228.1,3,458,No,No,No,—,RBP annotation looks usable
+MN047438.1,MN047438.1,3,458,No,No,No,—,RBP annotation looks usable
+MN336261.1,MN336261.1,3,458,No,No,Yes,R2_no_domain_evidence,every RBP candidate is no_domain in InterPro
+MN336262.1,"MN336262.1 Staphylococcus phage Sb1M_6168, complete genome",3,458,No,No,Yes,R2_no_domain_evidence,every RBP candidate is no_domain in InterPro
+MN336263.1,"MN336263.1 Staphylococcus phage Sb1M_9832, complete genome",3,458,No,No,Yes,R2_no_domain_evidence,every RBP candidate is no_domain in InterPro
+NC_007021.1,NC_007021.1,3,442,No,No,No,—,RBP annotation looks usable
+NC_007056.1,NC_007056.1,1,110,No,No,No,—,RBP annotation looks usable
+NC_019726.1,NC_019726.1,3,458,No,No,No,—,RBP annotation looks usable
+NC_021863.1,NC_021863.1,2,390,No,No,No,—,RBP annotation looks usable
+NC_023009.1,NC_023009.1,3,458,No,No,Yes,R2_no_domain_evidence,every RBP candidate is no_domain in InterPro
+NC_047722.1,NC_047722.1,3,458,No,No,Yes,R2_no_domain_evidence,every RBP candidate is no_domain in InterPro
+NC_047723.1,NC_047723.1,3,458,No,No,No,—,RBP annotation looks usable
+NC_047724.1,NC_047724.1,3,458,No,No,Yes,R2_no_domain_evidence,every RBP candidate is no_domain in InterPro
+NC_047725.1,NC_047725.1,3,458,No,No,Yes,R2_no_domain_evidence,every RBP candidate is no_domain in InterPro
+NC_047726.1,NC_047726.1,3,458,No,No,Yes,R2_no_domain_evidence,every RBP candidate is no_domain in InterPro
+NC_047727.1,NC_047727.1,3,458,No,No,Yes,R2_no_domain_evidence,every RBP candidate is no_domain in InterPro
