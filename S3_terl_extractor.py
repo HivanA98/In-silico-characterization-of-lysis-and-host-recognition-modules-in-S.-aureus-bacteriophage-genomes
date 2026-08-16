@@ -17,8 +17,9 @@ MANUSCRIPT CONTRIBUTION
 ==============================================================================
 
 Associated manuscript:
-    "In silico characterization of lysis and host-recognition modules in
-    Staphylococcus aureus bacteriophage genomes"
+    "Molecular Characterization of Lytic Bacteriophages Against Resistant
+    Staphylococcus aureus Based on NCBI GenBank Sequences:
+    A Bioinformatic Literature Review"
 
 Description
 -----------
@@ -101,46 +102,48 @@ Step 2 — Multiple Sequence Alignment with MAFFT (WEB SERVER, not local app):
     Open the MAFFT online server:
       https://mafft.cbrc.jp/alignment/server/
 
-    a. Upload results\\TerL_combined.faa, OR paste the FASTA content into
-       the input box.
-    b. Under "Advanced settings", set the alignment strategy to:
-         L-INS-i
-       (Very slow; recommended for <200 sequences with one conserved
-        domain and long gaps; 2 iterative cycles only.)
-       This is the strategy used for the manuscript: TerL is a single
-       conserved domain, and L-INS-i gives the most accurate alignment
-       for a dataset of this size (20 sequences).
+    a. Upload results\\TerL_combined.faa, OR paste the FASTA content.
+    b. At ~150 sequences, use strategy:
+         G-INS-i   (accurate, global homology; good for one conserved domain)
+       L-INS-i is also acceptable but slower at this size. Either is fine as
+       long as the SAME strategy is used for every rebuild (reproducibility).
     c. Click "Submit".
-    d. When alignment completes, open the "Fasta format" result and save
-       it as results\\TerL_aligned.faa (use "Save As" in the browser, or
-       copy the FASTA text into a new file).
+    d. Save the "Fasta format" result as results\\TerL_aligned.faa.
 
-Step 3 — Phylogenetic Tree in MEGA 12.1.2:
-    Download MEGA 12.1.2: https://www.megasoftware.net/
+Step 3 — Maximum-Likelihood tree with IQ-TREE (the tree is BUILT here):
+    At 150 taxa, IQ-TREE 2 is used instead of MEGA's built-in ML: it does
+    automatic model selection (ModelFinder) and ultrafast bootstrap, which is
+    faster and more rigorous than MEGA for a dataset this size.
+    Download IQ-TREE 2: http://www.iqtree.org/
+    Run (one line):
+      iqtree2 -s results\\TerL_aligned.faa -m MFP -B 1000 -alrt 1000 -T AUTO
+        -s        : the MAFFT alignment
+        -m MFP    : ModelFinder Plus picks the best substitution model
+                    (it will typically select LG+G+I or similar for TerL)
+        -B 1000   : 1000 ultrafast bootstrap replicates
+        -alrt 1000: SH-aLRT branch test (report both supports)
+        -T AUTO   : auto-detect CPU threads
+    Output: results\\TerL_aligned.faa.treefile  (Newick, with supports)
+    Optional outgroup: add  -o EW_accession_label  (the EW tip label).
 
-    Open results\\TerL_aligned.faa in MEGA 12.1.2, then:
-      Menu: Phylogeny > Construct/Test Maximum Likelihood Tree
-        Substitution model    : LG+G+I
-        Rates among sites     : Gamma distribution + Invariant sites (G+I)
-        ML heuristic method   : Nearest-Neighbor-Interchange (NNI)
-        Bootstrap replicates  : 1000
-        Partial deletion      : 80%% site coverage cutoff
-        Gaps/Missing data     : Partial Deletion
-        Outgroup              : Staphylococcus phage EW (NC_007056.1)
-        Condense tree at      : 50%% bootstrap (for polytomy display)
+Step 4 — Display in MEGA 12 as a USER TREE (MEGA no longer computes the tree):
+    Download MEGA 12: https://www.megasoftware.net/
+    Menu: User Tree > Display Newick Tree
+    Select the IQ-TREE **`.contree`** file (bootstrap consensus tree). IQ-TREE
+    writes two trees: `.treefile` (the ML tree) and `.contree` (the extended
+    majority-rule consensus of the ultrafast-bootstrap replicates, with support
+    values); the `.contree` is used for display here. MEGA renders the imported
+    topology + supports for figure layout — the tree is not recomputed, so the
+    figure is exactly the IQ-TREE result.
 
-Reproducibility Note (tree topology vs bootstrap values)
+Reproducibility Note (tree topology vs support values)
 ----------------------------------------------------------
-The TREE TOPOLOGY (branching pattern) is the reportable, stable result and
-is reproducible given the same input sequences and the same MAFFT strategy
-(L-INS-i). However, the BOOTSTRAP SUPPORT VALUES will vary by a few percent
-between runs even on an identical alignment, because bootstrapping is a
-random-resampling procedure and MEGA uses a different random seed each run.
-A change such as 30 -> 26 or 50 -> 47 at a node reflects this normal
-stochastic variation, NOT a change in the underlying phylogeny. To minimise
-run-to-run differences, always use the same MAFFT strategy (L-INS-i) and the
-same 1000-replicate / 80%%-partial-deletion settings; report the topology and
-the approximate support, not exact bootstrap integers.
+The TREE TOPOLOGY is the reportable, stable result, reproducible given the same
+input and the same MAFFT strategy. IQ-TREE ultrafast bootstrap is seeded, so
+re-runs on the same alignment are far more reproducible than MEGA's resampling;
+to fix the seed exactly, add  -seed 12345  to the IQ-TREE command. Report the
+topology and approximate UFBoot/SH-aLRT supports, not exact integers, and always
+reuse the same MAFFT strategy + IQ-TREE settings for any rebuild.
 
 Reference
 ---------
@@ -238,48 +241,88 @@ class TerLRecord:
     @property
     def fasta_header(self) -> str:
         """
-        FASTA header: {accession}|{organism_no_spaces}|{product}
+        Tip label, made Newick/IQ-TREE-safe: only [A-Za-z0-9_.] survive.
 
-        The detection_method is NOT included in the header to keep the
-        FASTA file compatible with MAFFT and MEGA sequence labeling.
+        IQ-TREE and Newick break on spaces, parentheses, colons, commas,
+        semicolons, and quotes in tip labels, so the organism is sanitised and
+        the (constant) product is dropped from the label — it adds nothing to a
+        tree tip and carries spaces. Format: {accession}_{organism_sanitised},
+        trimmed to a readable length. Accession alone keeps every tip unique.
         """
-        org_safe  = self.organism.replace(" ", "_")
-        prod_safe = self.product.replace("|", "/")
-        return f"{self.accession}|{org_safe}|{prod_safe}"
+        import re as _re
+        org = self.organism
+        for prefix in ("Staphylococcus phage ", "Staphylococcus virus ",
+                       "Staphylococcus "):
+            if org.startswith(prefix):
+                org = org[len(prefix):]
+                break
+        org_safe = _re.sub(r"[^A-Za-z0-9]+", "_", org).strip("_")[:32]
+        label = f"{self.accession}_{org_safe}" if org_safe else self.accession
+        return label.strip("_")
 
 
 # ===========================================================================
 # Detection logic
 # ===========================================================================
 
-def find_terl_in_record(record: SeqRecord) -> Optional[TerLRecord]:
+def _clean_accession(record_id: str) -> str:
+    """
+    Normalise a record id to a clean accession.version. Pharokka/older GenBank
+    records can carry a compound id like 'gi|2204821279|gb|CP062427.1|', which
+    breaks Newick tip labels; this extracts 'CP062427.1'. Clean ids pass through.
+    """
+    rid = (record_id or "").strip()
+    if "|" not in rid:
+        return rid
+    parts = rid.split("|")
+    for tag in ("gb", "ref", "emb", "dbj", "tpg", "tpe", "tpd"):
+        if tag in parts:
+            i = parts.index(tag)
+            if i + 1 < len(parts) and parts[i + 1]:
+                return parts[i + 1]
+    toks = [p for p in parts if p]
+    return toks[-1] if toks else rid
+
+
+def find_terl_in_record(record: SeqRecord,
+                        min_length_aa: int = 0) -> Optional[TerLRecord]:
     """
     Search all CDS features in a SeqRecord for the TerL sequence.
 
     Applies Mechanism 1 (keyword match) then Mechanism 2 (exact product match)
-    to each CDS feature. Returns the FIRST feature that:
-      (a) satisfies either mechanism, AND
-      (b) contains a non-empty "translation" qualifier.
+    to each CDS feature, collects ALL valid matches (with a non-empty
+    "translation"), and returns the LONGEST.
+
+    v3.0 fix (correctness, not cosmetic): the TerL gene is frequently SPLIT into
+    several ORFs annotated "terminase large subunit 1/2/3" (common in B. subtilis
+    phages; also introns/HNH insertions). The previous code returned the FIRST
+    match, which was often a 130-200 aa fragment while the ~400-650 aa full-length
+    ORF sat later in the record — producing wrong branch positions in the TerL
+    phylogeny. Selecting the longest match recovers the full-length TerL. Genomes
+    with a single TerL (e.g. all Staph Kayvirus) are unaffected: longest == first,
+    so this is byte-identical for single-TerL hosts by construction.
 
     Parameters
     ----------
     record : SeqRecord
         A Biopython SeqRecord from a GenBank flat file.
+    min_length_aa : int, optional
+        Explicit fragment gate. If > 0, a genome whose longest TerL match is
+        shorter than this is treated as NOT FOUND (excluded from the phylogeny,
+        like the Staph Portland/436A1 exclusions). Default 0 = OFF. This is a
+        deliberate knob, NOT a silent default: a length threshold can be wrong for
+        a host with a genuinely short TerL, so the operator turns it on knowingly.
 
     Returns
     -------
     TerLRecord or None
-        Extracted TerL record on success; None if no TerL CDS is found
-        or all matching CDS lack a translation qualifier.
-
-    Notes
-    -----
-    Bacteriophage genomes encode one terminase large subunit. Multiple matches
-    would indicate annotation redundancy rather than biology; only the first
-    valid match is returned.
+        Longest TerL match (subject to min_length_aa); None if no TerL CDS is
+        found, all matches lack a translation, or the longest is below the gate.
     """
-    organism = record.annotations.get("organism", record.name)
+    from phagecore.genbank_io import resolve_organism
+    organism = resolve_organism(record, getattr(record, "_source_path", None))
 
+    candidates: list[TerLRecord] = []
     for feature in record.features:
         if feature.type != "CDS":
             continue
@@ -305,22 +348,43 @@ def find_terl_in_record(record: SeqRecord) -> Optional[TerLRecord]:
             )
             continue
 
-        return TerLRecord(
-            accession=record.id,
+        candidates.append(TerLRecord(
+            accession=_clean_accession(record.id),
             organism=organism,
             product=product_raw,
             sequence=translation[0],
             detection_method=method,
+        ))
+
+    if not candidates:
+        return None
+
+    # Longest match wins (first-longest on ties: max() returns the first maximal
+    # element in feature order, so selection is deterministic).
+    best = max(candidates, key=lambda c: c.length)
+
+    if len(candidates) > 1:
+        log.info(
+            f"  {record.id}: {len(candidates)} TerL matches "
+            f"({', '.join(str(c.length) for c in candidates)} aa); "
+            f"selected longest = {best.length} aa"
         )
 
-    return None
+    if min_length_aa and best.length < min_length_aa:
+        log.info(
+            f"  {record.id}: longest TerL {best.length} aa < gate "
+            f"{min_length_aa} aa — excluded as fragment"
+        )
+        return None
+
+    return best
 
 
-def parse_file(gb_path: Path) -> Optional[TerLRecord]:
-    """Parse one GenBank file and extract its TerL sequence."""
+def parse_file(gb_path: Path, min_length_aa: int = 0) -> Optional[TerLRecord]:
+    """Parse one GenBank file and extract its (longest) TerL sequence."""
     try:
         record = SeqIO.read(str(gb_path), "genbank")
-        return find_terl_in_record(record)
+        return find_terl_in_record(record, min_length_aa=min_length_aa)
     except ValueError as exc:
         log.warning(f"  Skipped '{gb_path.name}': {exc}")
     except Exception as exc:
@@ -332,14 +396,16 @@ def parse_file(gb_path: Path) -> Optional[TerLRecord]:
 # Batch processing and I/O
 # ===========================================================================
 
-def run(input_dir: Path, output_path: Path) -> list[TerLRecord]:
+def run(input_dir: Path, output_path: Path,
+        min_terl_aa: int = 0) -> list[TerLRecord]:
     """
     Process all GenBank files and write combined multi-FASTA for MAFFT/MEGA.
 
-    Genomes without a detectable TerL (Portland MT926124 and
-    vB_SauP-436A1 MN150710) are excluded from the FASTA output and
-    reported in the terminal log, consistent with their exclusion from
-    Figure 1 in the manuscript.
+    Genomes without a detectable TerL (e.g. Staph Portland MT926124 and
+    vB_SauP-436A1 MN150710) are excluded from the FASTA output and reported in
+    the terminal log, consistent with their exclusion from Figure 1. With
+    min_terl_aa > 0, genomes whose longest TerL is below the gate are excluded
+    the same way (reported as fragments).
 
     Parameters
     ----------
@@ -347,11 +413,8 @@ def run(input_dir: Path, output_path: Path) -> list[TerLRecord]:
         Directory containing GenBank flat files.
     output_path : Path
         Output multi-FASTA file (.faa).
-
-    Returns
-    -------
-    list[TerLRecord]
-        Extracted TerL records, sorted by accession.
+    min_terl_aa : int, optional
+        Explicit fragment gate passed to find_terl_in_record. Default 0 = OFF.
     """
     gb_files = sorted(
         f for f in input_dir.iterdir()
@@ -363,13 +426,15 @@ def run(input_dir: Path, output_path: Path) -> list[TerLRecord]:
         sys.exit(1)
 
     log.info(f"Found {len(gb_files)} GenBank file(s) in '{input_dir}'")
+    if min_terl_aa:
+        log.info(f"TerL fragment gate ON: excluding TerL shorter than {min_terl_aa} aa")
 
     found:     list[TerLRecord] = []
     not_found: list[str]        = []
 
     for gb in gb_files:
         log.info(f"  Processing {gb.name}")
-        terl = parse_file(gb)
+        terl = parse_file(gb, min_length_aa=min_terl_aa)
         if terl:
             found.append(terl)
             log.info(
@@ -460,6 +525,15 @@ Examples (Windows Command Prompt)
         type=Path, default=Path("TerL_combined.faa"), metavar="FILE",
         help="Output multi-FASTA file. Default: TerL_combined.faa",
     )
+    parser.add_argument(
+        "--min-terl-aa",
+        type=int, default=0, metavar="AA",
+        help="OPTIONAL fragment gate: exclude any genome whose longest TerL is "
+             "shorter than AA residues (like the Portland/436A1 exclusions). "
+             "Default 0 = OFF. Turn on deliberately — a length threshold can be "
+             "wrong for a host with a genuinely short TerL. Longest-match "
+             "selection is always on and needs no flag.",
+    )
     return parser
 
 
@@ -469,7 +543,7 @@ Examples (Windows Command Prompt)
 
 if __name__ == "__main__":
     args  = build_parser().parse_args()
-    found = run(args.input_dir, args.output)
+    found = run(args.input_dir, args.output, min_terl_aa=args.min_terl_aa)
 
     sep = "=" * 80
     kw_count    = sum(1 for t in found if t.detection_method == "keyword_match")

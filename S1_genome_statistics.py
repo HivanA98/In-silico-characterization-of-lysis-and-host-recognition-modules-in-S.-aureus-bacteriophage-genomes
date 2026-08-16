@@ -1,472 +1,219 @@
 #!/usr/bin/env python3
 """
-S1_genome_statistics.py
-=======================
-Batch Genomic Statistics Extractor — Complete Table 1 Generator
+S1_genome_statistics.py  (v2, phagecore engine)
+===============================================
+TABLE 1 — General characteristics of phage genomes, with QC and provenance.
 
-==============================================================================
-MANUSCRIPT CONTRIBUTION
-  Generates:  TABLE 1 — General Characteristics of Phage Genomes
-  Output columns (all):
-    Phage | Accession | Class | SubFamily | Genome_Size_bp | GC_Percent |
-    CDS_Count | tRNA_Count | NCBI_Status
-==============================================================================
+This is a THIN entry point over the shared `phagecore` engine. It adds, versus
+the v1 script:
+  * a QC column set: qc_status, qc_flags, annotation_present, duplicate_group,
+    is_representative, taxonomy_flag  — so a 40 kb genome with 0 CDS is FLAGGED
+    (FAIL_NO_CDS) instead of silently written as CDS=0;
+  * sequence-level deduplication with a documented representative rule;
+  * a run manifest (tool versions + per-file status + checksums);
+  * optional multiprocessing (--jobs) and recursive discovery (--recursive) for
+    massive batches;
+  * a --profile switch (REQUIRED in v3.0; no default — prevents wrong-host runs).
 
-Associated manuscript:
-    "In silico characterization of lysis and host-recognition modules in
-    Staphylococcus aureus bacteriophage genomes"
-
-Description
------------
-Extracts all Table 1 data from GenBank flat files in a single run:
-
-  1. Genomic statistics (genome size, GC%, CDS count, tRNA count):
-     Derived from record.seq (nucleotide sequence) and record.features
-     (list of SeqFeature objects), following Cock et al. (2009).
-
-     CDS COUNT — METHOD NOTE (reconciliation with primary literature):
-     CDS_Count is the number of features with feature.type == "CDS" in the
-     GenBank record AS DEPOSITED. It is therefore the curated annotation the
-     submitter uploaded, read verbatim by Biopython SeqIO — NOT a re-prediction.
-     Primary papers that re-annotate a genome with a de-novo gene-caller
-     (e.g., RAST, Prokka, GeneMarkS) can report a DIFFERENT ORF count for the
-     same accession. Example in this dataset: Staphylococcus phage vB_SauM-515A1
-     (MN047438) is reported with 238 ORFs by RAST in Kornienko et al. (2020,
-     Sci Rep and Viruses), whereas the deposited GenBank record yields 236 CDS.
-     The 2-feature difference reflects gene-caller and curation differences
-     (and is compounded for MN047438 by its intron-split lysK; see S4) — it is
-     NOT a counting error in this script. Matching 238 would require re-running
-     RAST, which is a different methodology from "characterization of the
-     deposited GenBank annotation". Report CDS as the GenBank-deposit count and
-     add a manuscript footnote stating the method (see README / docx).
-
-  2. Taxonomic classification (Class, Family, SubFamily):
-     Derived from record.annotations["taxonomy"], the LINEAGE field in
-     NCBI GenBank records, using ICTV rank suffixes:
-       Class     ← token ending in "-viricetes"  (e.g., Caudoviricetes)
-       Family    ← token ending in "-viridae"    (e.g., Herelleviridae)
-       SubFamily ← token ending in "-virinae"     (e.g., Twortvirinae)
-
-     This corrects an earlier version that mislabelled the "-viridae"
-     family rank as "Class". Under ICTV nomenclature the hierarchy is:
-       Caudoviricetes  (-viricetes)  CLASS
-       Caudovirales    (-virales)    ORDER  (abolished in ICTV 2022 for
-                                             many tailed-phage lineages)
-       Herelleviridae  (-viridae)    FAMILY
-       Twortvirinae    (-virinae)    SUBFAMILY
-       Kayvirus        (-virus)      GENUS
-
-     Guaranteed no "N/A": some NCBI lineages omit the family rank
-     (e.g., subfamily Azeredovirinae for phages EW [NC_007056] and
-     SA13 [NC_021863] carries no "-viridae" token). For these records the
-     family is filled from FAMILY_BY_SUBFAMILY; subfamilies that NCBI/ICTV
-     do not place in any family resolve to "Unassigned" — a valid taxonomic
-     status (family incertae sedis), NOT a data error. Edit
-     FAMILY_BY_SUBFAMILY if ICTV later assigns a family.
-
-     Verified mapping (this dataset):
-       Twortvirinae    → Family Herelleviridae,  Class Caudoviricetes
-       Rakietenvirinae → Family Rountreeviridae,  Class Caudoviricetes
-       Azeredovirinae  → Family Unassigned,       Class Caudoviricetes
-
-  3. Completeness status (NCBI_Status):
-     Inferred from KEYWORDS and DEFINITION fields.
-
-Reference
----------
-Cock PJA, Antao T, Chang JT, Chapman BA, Cox CJ, Dalke A, Friedberg I,
-Hamelryck T, Kauff F, Wilczynski B, de Hoon MJL (2009). Biopython: freely
-available Python tools for computational molecular biology and bioinformatics.
-Bioinformatics, 25(11):1422-1423. doi:10.1093/bioinformatics/btp163
-
-Dependencies (exact versions; no other dependencies required)
---------------------------------------------------------------
-  Installed via pip:
-    biopython  1.87    GenBank parsing (Cock et al., 2009)
-    pandas     3.0.3   tabular CSV output
-    numpy      2.4.6   INDIRECT — installed automatically by pandas;
-                       NOT imported directly by this script.
-
-  Python standard library (no installation needed):
-    argparse, logging, sys, pathlib, typing
-
-  Output is CSV only; the dependency set is exactly the components above.
-
-Tested Environment (Windows)
------------------------------
-    OS        : Windows 10 / 11
-    Python    : 3.12.10
-    biopython : 1.87
-    pandas    : 3.0.3
-    numpy     : 2.4.6  (indirect, via pandas)
-
-Installation (Command Prompt / PowerShell)
-------------------------------------------
-    pip install biopython==1.87 pandas==3.0.3
-    (numpy 2.4.6 is installed automatically as a pandas dependency)
+Output columns (Table 1 core, unchanged + QC appended):
+  Phage Accession Class Family SubFamily Genome_Size_bp GC_Percent
+  CDS_Count tRNA_Count NCBI_Status
+  | qc_status qc_flags annotation_present duplicate_group is_representative
+    taxonomy_flag seq_md5 source_file
 
 Usage (Windows Command Prompt)
--------------------------------
-    python S1_genome_statistics.py -i GenBank -o results/Table1.csv
+------------------------------
+  python S1_genome_statistics.py -i GenBank -o results\\Table1.csv
+  python S1_genome_statistics.py -i GenBank -o results\\Table1.csv --jobs 8 --recursive
 """
+
+from __future__ import annotations
 
 import argparse
 import logging
 import sys
+from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
-from typing import Optional
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))  # find phagecore from any cwd
 
 import pandas as pd
 from Bio import SeqIO
-from Bio.SeqRecord import SeqRecord
 
-# ---------------------------------------------------------------------------
-# Logging
-# ---------------------------------------------------------------------------
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s  [%(levelname)-8s]  %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-)
-log = logging.getLogger(__name__)
+from phagecore import __version__
+from phagecore.genbank_io import (discover_genbank_files, sequence_md5,
+                                   is_refseq_accession, census_features,
+                                   FileOutcome, write_manifest)
+from phagecore.qc import (QCResult, evaluate_qc, assign_duplicates,
+                          merge_dup_into_qc)
+from phagecore.taxonomy import resolve_taxonomy, infer_ncbi_status
+from phagecore.profiles import load_profile
+from phagecore.genbank_io import resolve_organism
 
-# ---------------------------------------------------------------------------
-# Constants
-# ---------------------------------------------------------------------------
-VALID_EXTENSIONS: frozenset[str] = frozenset({".gb", ".gbk", ".gbff"})
-
-# Fallback family lookup for records whose NCBI lineage OMITS the family
-# ("-viridae") rank. Some NCBI lineages list only down to subfamily; in that
-# case the family is resolved from the subfamily below.
-#
-# Values reflect ICTV placement as retrieved from the NCBI Taxonomy browser:
-#   - Twortvirinae   is placed in family Herelleviridae.
-#   - Rakietenvirinae is placed in family Rountreeviridae.
-#   - Azeredovirinae  is NOT placed in any family in the NCBI lineage for
-#     phages EW (NC_007056) and SA13 (NC_021863); its family-level rank is
-#     unresolved (incertae sedis), so it resolves to "Unassigned".
-#
-# "Unassigned" is a valid taxonomic status, NOT a missing-data marker.
-# If ICTV later assigns a family to a subfamily here, edit this map.
-FAMILY_BY_SUBFAMILY: dict[str, str] = {
-    "Twortvirinae":    "Herelleviridae",
-    "Rakietenvirinae": "Rountreeviridae",
-    "Azeredovirinae":  "Unassigned",
-}
-
-# Default class for tailed dsDNA bacteriophages (used only if a lineage
-# unexpectedly lacks a "-viricetes" token; every genome in this dataset
-# carries Caudoviricetes in its lineage).
-DEFAULT_CLASS: str = "Caudoviricetes"
+logging.basicConfig(level=logging.INFO,
+                    format="%(asctime)s  [%(levelname)-8s]  %(message)s",
+                    datefmt="%Y-%m-%d %H:%M:%S")
+log = logging.getLogger("S1")
 
 
-# ===========================================================================
-# Core analysis functions
-# ===========================================================================
-
-def calculate_gc_content(sequence: str) -> float:
-    """
-    Calculate percentage GC content of a nucleotide sequence.
-
-    Formula: GC% = (count_G + count_C) / len(sequence) × 100
-
-    Ambiguity codes (N, R, Y, etc.) count toward the denominator but not
-    the numerator, consistent with NCBI GenBank composition reporting.
-
-    Parameters
-    ----------
-    sequence : str
-        Raw nucleotide sequence (any case).
-
-    Returns
-    -------
-    float
-        GC percentage rounded to two decimal places. Returns 0.00 if empty.
-    """
-    seq   = sequence.upper()
-    total = len(seq)
-    if total == 0:
+def gc_percent(seq: str) -> float:
+    s = seq.upper()
+    if not s:
         return 0.00
-    gc = seq.count("G") + seq.count("C")
-    return round((gc / total) * 100, 2)
+    return round((s.count("G") + s.count("C")) / len(s) * 100, 2)
 
 
-def extract_classification(record: SeqRecord) -> tuple[str, str, str]:
-    """
-    Extract ICTV Class, Family, and SubFamily from a SeqRecord.
-
-    The NCBI GenBank LINEAGE field is mapped to record.annotations["taxonomy"]
-    by Biopython as a list of taxonomic strings in hierarchical order.
-
-    Rank detection (by suffix):
-      Class     ← token ending in "-viricetes"  (e.g., Caudoviricetes)
-      Family    ← token ending in "-viridae"    (e.g., Herelleviridae)
-      SubFamily ← token ending in "-virinae"     (e.g., Twortvirinae)
-
-    No-"N/A" guarantee:
-      - If no "-viricetes" token is present, Class falls back to
-        DEFAULT_CLASS ("Caudoviricetes"); every genome in this dataset
-        carries Caudoviricetes, so this fallback is a safety net only.
-      - If no "-viridae" token is present (NCBI omits the family rank, as for
-        the Azeredovirinae phages EW and SA13), Family is resolved from
-        FAMILY_BY_SUBFAMILY; unresolved subfamilies yield "Unassigned".
-      - If no "-virinae" token is present, SubFamily yields "Unassigned".
-
-    Parameters
-    ----------
-    record : SeqRecord
-        A Biopython SeqRecord parsed from a GenBank flat file.
-
-    Returns
-    -------
-    tuple[str, str, str]
-        (Class, Family, SubFamily). No element is ever the literal "N/A".
-
-    Notes
-    -----
-    Representative lineages in this dataset:
-      Caudoviricetes; Herelleviridae;  Twortvirinae    → Kayvirus / Twortvirus
-      Caudoviricetes; Rountreeviridae; Rakietenvirinae → Andhravirus
-      Caudoviricetes; <no family>;     Azeredovirinae  → (family Unassigned)
-    """
-    taxonomy = record.annotations.get("taxonomy", [])
-
-    phage_class = None
-    family      = None
-    subfamily   = None
-
-    for taxon in taxonomy:
-        if taxon.endswith("viricetes"):
-            phage_class = taxon
-        elif taxon.endswith("viridae"):
-            family = taxon
-        elif taxon.endswith("virinae"):
-            subfamily = taxon
-
-    # ---- Resolve with no-"N/A" fallbacks ----
-    if phage_class is None:
-        phage_class = DEFAULT_CLASS
-
-    if subfamily is None:
-        subfamily = "Unassigned"
-
-    if family is None:
-        # NCBI omitted the family rank: resolve from the subfamily map.
-        family = FAMILY_BY_SUBFAMILY.get(subfamily, "Unassigned")
-
-    return phage_class, family, subfamily
-
-
-def infer_ncbi_status(record: SeqRecord) -> str:
-    """
-    Infer NCBI sequence completeness from KEYWORDS and DEFINITION fields.
-
-    Returns
-    -------
-    str
-        "Complete Genome" if "complete" appears in keywords or description;
-        "Draft/Partial" otherwise.
-    """
-    keywords    = record.annotations.get("keywords", [])
-    description = record.description.lower()
-
-    if any("complete" in kw.lower() for kw in keywords) or "complete" in description:
-        return "Complete Genome"
-    return "Draft/Partial"
-
-
-def extract_stats(record: SeqRecord) -> dict:
-    """
-    Extract all Table 1 fields from a single SeqRecord.
-
-    Parameters
-    ----------
-    record : SeqRecord
-        A Biopython SeqRecord from Bio.SeqIO.read().
-
-    Returns
-    -------
-    dict
-        Keys: Phage, Accession, Class, Family, SubFamily, Genome_Size_bp,
-        GC_Percent, CDS_Count, tRNA_Count, NCBI_Status.
-
-    Notes
-    -----
-    CDS and tRNA counts iterate over record.features and filter by
-    feature.type. Only "CDS" and "tRNA" type annotations are counted;
-    other feature types (gene, repeat_region, misc_feature) are ignored.
-    """
-    seq_str      = str(record.seq).upper()
-    cds_count    = sum(1 for f in record.features if f.type == "CDS")
-    trna_count   = sum(1 for f in record.features if f.type == "tRNA")
-    cls, family, subfam = extract_classification(record)
-
-    return {
-        "Phage":          record.annotations.get("organism", record.name),
-        "Accession":      record.id,
-        "Class":          cls,
-        "Family":         family,
-        "SubFamily":      subfam,
-        "Genome_Size_bp": len(seq_str),
-        "GC_Percent":     calculate_gc_content(seq_str),
-        "CDS_Count":      cds_count,
-        "tRNA_Count":     trna_count,
-        "NCBI_Status":    infer_ncbi_status(record),
-    }
-
-
-def parse_single_file(gb_path: Path) -> Optional[dict]:
-    """
-    Parse one GenBank file and return Table 1 row data.
-
-    Bio.SeqIO.read() is used (not parse()) because each file must contain
-    exactly one complete genome record.
-
-    Parameters
-    ----------
-    gb_path : Path
-        Path to a GenBank flat file.
-
-    Returns
-    -------
-    dict or None
-        Row data on success; None if parsing fails. Failures are logged at
-        WARNING level and the file is skipped without halting execution.
-    """
+# A lightweight, picklable per-genome record (no SeqRecord retained).
+def extract_one(path_str: str, profile_spec: str) -> dict:
+    profile = load_profile(profile_spec)
+    path = Path(path_str)
     try:
-        record = SeqIO.read(str(gb_path), "genbank")
-        return extract_stats(record)
-    except ValueError as exc:
-        log.warning(f"  Skipped '{gb_path.name}': {exc}")
-    except Exception as exc:
-        log.warning(f"  Skipped '{gb_path.name}': unexpected error — {exc}")
-    return None
+        record = next(SeqIO.parse(str(path), "genbank"), None)
+        if record is None:
+            return {"_status": "empty", "_file": path_str}
+        seq = str(record.seq)
+        census = census_features(record)
+        n_cds = census.get("CDS", 0)
+        gc = gc_percent(seq)
+        klass, family, subfam, tax_flag = resolve_taxonomy(record, profile)
+        return {
+            "_status": "ok", "_file": path_str,
+            "Phage": resolve_organism(record, locals().get("path") or locals().get("gb")),
+            "Accession": record.id,
+            "_acc_base": record.id.split(".")[0],
+            "Class": klass, "Family": family, "SubFamily": subfam,
+            "Genome_Size_bp": len(seq), "GC_Percent": gc,
+            "CDS_Count": n_cds,
+            "tRNA_Count": census.get("tRNA", 0),
+            "NCBI_Status": infer_ncbi_status(record),
+            "taxonomy_flag": tax_flag,
+            "seq_md5": sequence_md5(seq),
+            "_is_refseq": is_refseq_accession(record.id),
+            "_census": census, "_seq_len": len(seq), "_gc": gc, "_n_cds": n_cds,
+        }
+    except Exception as exc:                              # noqa: BLE001
+        return {"_status": "parse_error", "_file": path_str, "_msg": str(exc)}
 
 
-# ===========================================================================
-# Batch processing and I/O
-# ===========================================================================
+class _ShimGenome:
+    """Minimal stand-in so qc.evaluate_qc/assign_duplicates can run post-parse."""
+    def __init__(self, d):
+        self.accession = d["Accession"]
+        self.feature_census = d["_census"]
+        self.seq_md5 = d["seq_md5"]
+        self.is_refseq = d["_is_refseq"]
 
-def run(input_dir: Path, output_path: Path) -> pd.DataFrame:
-    """
-    Process all GenBank files and write the complete Table 1.
 
-    Parameters
-    ----------
-    input_dir : Path
-        Directory containing GenBank flat files (.gb / .gbk / .gbff).
-        Sub-directories are not traversed.
-    output_path : Path
-        Output CSV file path (UTF-8 encoded).
+def run(input_dir: Path, output_path: Path, profile_spec: str,
+        jobs: int, recursive: bool, manifest_path: Path | None) -> pd.DataFrame:
+    profile = load_profile(profile_spec)
+    files = discover_genbank_files(input_dir, recursive=recursive)
+    if not files:
+        log.error("No GenBank files in '%s'.", input_dir)
+        sys.exit(1)
+    log.info("Found %d GenBank file(s); profile='%s'", len(files), profile.name)
 
-    Returns
-    -------
-    pd.DataFrame
-        Complete Table 1 sorted by Accession number.
-    """
-    gb_files = sorted(
-        f for f in input_dir.iterdir()
-        if f.is_file() and f.suffix.lower() in VALID_EXTENSIONS
-    )
+    raw: list[dict] = []
+    if jobs and jobs > 1:
+        with ProcessPoolExecutor(max_workers=jobs) as ex:
+            raw = list(ex.map(extract_one, [str(f) for f in files],
+                              [profile_spec] * len(files), chunksize=8))
+    else:
+        for i, f in enumerate(files, 1):
+            if i % 200 == 0:
+                log.info("  ...processed %d/%d", i, len(files))
+            raw.append(extract_one(str(f), profile_spec))
 
-    if not gb_files:
-        log.error(
-            f"No GenBank files found in '{input_dir}'. "
-            f"Accepted: {', '.join(sorted(VALID_EXTENSIONS))}"
-        )
+    outcomes: list[FileOutcome] = []
+    ok = [d for d in raw if d.get("_status") == "ok"]
+    for d in raw:
+        if d.get("_status") == "ok":
+            outcomes.append(FileOutcome(d["_file"], "ok", d["Accession"],
+                                        d["Phage"], d["_seq_len"], d["_n_cds"],
+                                        d["seq_md5"]))
+        else:
+            outcomes.append(FileOutcome(d.get("_file", "?"),
+                                        d.get("_status", "parse_error"),
+                                        message=d.get("_msg", "")))
+    if not ok:
+        log.error("No records extracted.")
         sys.exit(1)
 
-    log.info(f"Found {len(gb_files)} GenBank file(s) in '{input_dir}'")
-
+    # --- QC + dedup (engine) ---
+    shims = [_ShimGenome(d) for d in ok]
+    dup = assign_duplicates(shims, prefer_refseq=profile.prefer_refseq_representative)
     rows = []
-    for gb in gb_files:
-        log.info(f"  Processing {gb.name}")
-        row = parse_single_file(gb)
-        if row:
-            rows.append(row)
-
-    if not rows:
-        log.error("No records extracted. Verify input files are valid GenBank format.")
-        sys.exit(1)
+    for d in ok:
+        g = _ShimGenome(d)
+        qc = evaluate_qc(g, d["_seq_len"], d["_n_cds"], d["_gc"], profile)
+        qc = merge_dup_into_qc(qc, dup[d["Accession"]])
+        rows.append({
+            "Phage": d["Phage"], "Accession": d["Accession"],
+            "Class": d["Class"], "Family": d["Family"], "SubFamily": d["SubFamily"],
+            "Genome_Size_bp": d["Genome_Size_bp"], "GC_Percent": d["GC_Percent"],
+            "CDS_Count": d["CDS_Count"], "tRNA_Count": d["tRNA_Count"],
+            "NCBI_Status": d["NCBI_Status"],
+            "qc_status": qc.qc_status,
+            "qc_flags": ";".join(qc.qc_flags),
+            "annotation_present": qc.annotation_present,
+            "duplicate_group": qc.duplicate_group,
+            "is_representative": qc.is_representative,
+            "taxonomy_flag": d["taxonomy_flag"],
+            "seq_md5": d["seq_md5"], "source_file": d["_file"],
+        })
 
     df = pd.DataFrame(rows).sort_values("Accession").reset_index(drop=True)
-
     output_path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(output_path, index=False, encoding="utf-8")
+    log.info("Table 1 written: '%s' (%d records)", output_path, len(df))
 
-    log.info(f"Table 1 written: '{output_path}'  ({len(df)} records)")
+    if manifest_path:
+        write_manifest(manifest_path, outcomes, profile.name,
+                       f"S1_genome_statistics.py v{__version__}")
     return df
 
 
-# ===========================================================================
-# Command-line interface
-# ===========================================================================
-
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(
-        prog="S1_genome_statistics.py",
-        description=(
-            "Extract all Table 1 data from Staphylococcus phage GenBank records: "
-            "taxonomic classification (Class, Family, SubFamily) and genomic statistics "
-            "(genome size, GC%%, CDS count, tRNA count). "
-            "This script generates the COMPLETE Table 1 in a single run."
-        ),
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-MANUSCRIPT OUTPUT
------------------
-  TABLE 1 — General Characteristics of Phage Genomes
-  Columns: Phage | Accession | Class | SubFamily | Genome Size | GC%% |
-           CDS Count | tRNA Count | NCBI Status
+    p = argparse.ArgumentParser(prog="S1_genome_statistics.py",
+        description="Table 1 genome statistics with QC, dedup and provenance "
+                    "(phagecore engine).")
+    p.add_argument("-i", "--input_dir", type=Path, required=True, metavar="DIR")
+    p.add_argument("-o", "--output", type=Path, default=Path("Table1.csv"),
+                   metavar="FILE")
+    p.add_argument("--profile", required=True,
+                   help="REQUIRED. Built-in name (staphylococcus_aureus | gram_negative_generic | mycobacterium) or path to a .yaml profile. No default (v3.0): prevents silent wrong-host runs.")
+    p.add_argument("--jobs", type=int, default=1,
+                   help="Parallel workers for massive batches (default 1).")
+    p.add_argument("--recursive", action="store_true",
+                   help="Recurse into sub-directories of the input.")
+    p.add_argument("--manifest", type=Path, default=None,
+                   help="Optional run-manifest CSV (versions + per-file status).")
+    return p
 
-Examples (Windows Command Prompt)
-----------------------------------
-  python S1_genome_statistics.py -i GenBank -o results\\Table1.csv
-
-Examples (Windows PowerShell)
-------------------------------
-  python S1_genome_statistics.py -i GenBank -o results/Table1.csv
-        """,
-    )
-    parser.add_argument(
-        "--input_dir", "-i",
-        type=Path, required=True, metavar="DIR",
-        help="Directory containing GenBank files (.gb / .gbk / .gbff)",
-    )
-    parser.add_argument(
-        "--output", "-o",
-        type=Path, default=Path("Table1.csv"), metavar="FILE",
-        help="Output CSV file path. Default: Table1.csv",
-    )
-    return parser
-
-
-# ===========================================================================
-# Entry point
-# ===========================================================================
 
 if __name__ == "__main__":
     args = build_parser().parse_args()
-    df   = run(args.input_dir, args.output)
+    df = run(args.input_dir, args.output, args.profile, args.jobs,
+             args.recursive, args.manifest)
 
     sep = "=" * 80
-    print(f"\n{sep}")
-    print("TABLE 1 — GENERAL CHARACTERISTICS OF PHAGE GENOMES")
+    print(f"\n{sep}\nTABLE 1 — GENERAL CHARACTERISTICS (with QC)\n{sep}")
+    n_fail = int((df.qc_status == "FAIL_NO_CDS").sum())
+    n_warn = int((df.qc_status == "WARN").sum())
+    n_dup_nonrep = int((~df.is_representative).sum())
+    n_taxflag = int((df.taxonomy_flag != "").sum())
+    print(f"  Total genomes           : {len(df)}")
+    print(f"  QC PASS                 : {int((df.qc_status=='PASS').sum())}")
+    print(f"  QC WARN                 : {n_warn}")
+    print(f"  QC FAIL_NO_CDS          : {n_fail}   <-- inspect/re-download these")
+    print(f"  Non-representative dups  : {n_dup_nonrep}   "
+          f"(unique genomes: {int(df.is_representative.sum())})")
+    print(f"  Family needs ICTV check : {n_taxflag}")
+    print(f"  Genome size range       : {df.Genome_Size_bp.min():,} – "
+          f"{df.Genome_Size_bp.max():,} bp")
     print(sep)
-    print(df.to_string(index=False))
-    print(sep)
-    print(f"  Total phages       : {len(df)}")
-    print(f"  Genome size range  : {df['Genome_Size_bp'].min():,} – "
-          f"{df['Genome_Size_bp'].max():,} bp")
-    print(f"  GC%% range          : {df['GC_Percent'].min():.2f}%% – "
-          f"{df['GC_Percent'].max():.2f}%%")
-    print(f"  Classes found      : "
-          f"{', '.join(sorted(df['Class'].unique()))}")
-    print(f"  Families found     : "
-          f"{', '.join(sorted(df['Family'].unique()))}")
-    print(f"  SubFamilies found  : "
-          f"{', '.join(sorted(df['SubFamily'].unique()))}")
-    # Verify no residual N/A in any taxonomic column
-    na_mask = (df[["Class", "Family", "SubFamily"]] == "N/A").any(axis=1)
-    print(f"  Rows with 'N/A'    : {int(na_mask.sum())}  (target: 0)")
-    print(sep)
+    if n_fail:
+        print("  FAIL_NO_CDS accessions:")
+        for _, r in df[df.qc_status == "FAIL_NO_CDS"].iterrows():
+            print(f"    • {r.Accession}  ({r.Genome_Size_bp:,} bp)  {r.qc_flags}")
+        print(sep)
