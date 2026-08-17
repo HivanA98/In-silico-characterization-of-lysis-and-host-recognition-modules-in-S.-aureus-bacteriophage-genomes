@@ -1,0 +1,2 @@
+Phage,Accession,Holin_Present,Holin_Evidence,Tail_Fiber_RBP_Present,RBP_Evidence,RBP_Count,annotation_qc,Annotation_Note
+EU418428.2 - Phynteny annotated genome,EU418428.2,Yes,[holin] holin,Yes,[tail fiber] tail fiber protein,3,PASS,"Detection by GenBank text annotation only. 'No' may reflect incomplete annotation, not biological absence."

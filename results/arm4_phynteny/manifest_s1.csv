@@ -6,7 +6,28 @@
 # biopython,1.87
 # pandas,3.0.3
 # platform,Windows-11-10.0.26200-SP0
-# run_utc,2026-08-12T23:30:23+00:00
+# run_utc,2026-08-17T00:11:12+00:00
 
 source_file,status,accession,organism,seq_len,n_cds,seq_md5,message
-GenBank\Phynteny\phynteny.gbk,ok,EU418428.2,EU418428.2 - Phynteny annotated genome,145542,270,6f1c9464a15d2f9559cb1ff100837d9f,
+GenBank\Aureus_Phynteny_split\EU418428.2.gbk,ok,EU418428.2,EU418428.2 - Phynteny annotated genome,145542,270,6f1c9464a15d2f9559cb1ff100837d9f,
+GenBank\Aureus_Phynteny_split\KY779849.1.gbk,ok,KY779849.1,KY779849.1 - Phynteny annotated genome,142499,256,2ecb1081575ba8d20486853f3092b92c,
+GenBank\Aureus_Phynteny_split\MF398190.1.gbk,ok,MF398190.1,MF398190.1 - Phynteny annotated genome,148464,275,0b4e6604f96406c5ffc92d9263e63df6,
+GenBank\Aureus_Phynteny_split\MH159197.1.gbk,ok,MH159197.1,MH159197.1 - Phynteny annotated genome,141384,248,9c6bbd70c1a5bff7ca75c0e94a061d82,
+GenBank\Aureus_Phynteny_split\MN045228.1.gbk,ok,MN045228.1,MN045228.1 - Phynteny annotated genome,141712,245,46922af9cc717b671d57401758e0ae2d,
+GenBank\Aureus_Phynteny_split\MN047438.1.gbk,ok,MN047438.1,MN047438.1 - Phynteny annotated genome,148511,276,c85cf65dfb3b34844b8fc2c7c0298972,
+GenBank\Aureus_Phynteny_split\MN150710.1.gbk,ok,MN150710.1,MN150710.1 - Phynteny annotated genome,18028,22,d93430debb1eab13a7de5993b397a9c6,
+GenBank\Aureus_Phynteny_split\MN336261.1.gbk,ok,MN336261.1,MN336261.1 - Phynteny annotated genome,139606,251,ab2e1aedefe13310971791b3ee194bd8,
+GenBank\Aureus_Phynteny_split\MN336262.1.gbk,ok,MN336262.1,MN336262.1 - Phynteny annotated genome,138231,244,8c2f90b857b87434ca796c621de4da22,
+GenBank\Aureus_Phynteny_split\MN336263.1.gbk,ok,MN336263.1,MN336263.1 - Phynteny annotated genome,138231,244,c4c713061540bce2fa0e338a7c21a6cb,
+GenBank\Aureus_Phynteny_split\MT926124.1.gbk,ok,MT926124.1,MT926124.1 - Phynteny annotated genome,17471,22,28f3a5296bf5b2d23502f0f591012f44,
+GenBank\Aureus_Phynteny_split\NC_007021.1.gbk,ok,NC_007021.1,NC_007021.1 - Phynteny annotated genome,130706,214,985549f557ef7f6d9f05b40146aaa061,
+GenBank\Aureus_Phynteny_split\NC_007056.1.gbk,ok,NC_007056.1,NC_007056.1 - Phynteny annotated genome,45286,82,97b48f859ad08fdd6260c2215fe6e773,
+GenBank\Aureus_Phynteny_split\NC_019726.1.gbk,ok,NC_019726.1,NC_019726.1 - Phynteny annotated genome,141836,247,77d8dc7803b06a1d3828fa98d54005e5,
+GenBank\Aureus_Phynteny_split\NC_021863.1.gbk,ok,NC_021863.1,NC_021863.1 - Phynteny annotated genome,42652,74,bc4b2b84b552df7dc0773838bc397b96,
+GenBank\Aureus_Phynteny_split\NC_023009.1.gbk,ok,NC_023009.1,NC_023009.1 - Phynteny annotated genome,127188,215,73deb1acfd0b9fa719cae4a27753ab45,
+GenBank\Aureus_Phynteny_split\NC_047722.1.gbk,ok,NC_047722.1,NC_047722.1 - Phynteny annotated genome,145647,270,d76ea67eaea8b5fe4070f12cde23e791,
+GenBank\Aureus_Phynteny_split\NC_047723.1.gbk,ok,NC_047723.1,NC_047723.1 - Phynteny annotated genome,141018,252,84a9e147d107e236fc1129f3dbeed5bf,
+GenBank\Aureus_Phynteny_split\NC_047724.1.gbk,ok,NC_047724.1,NC_047724.1 - Phynteny annotated genome,148564,274,532b7cf4f3b3d1da1ccf629f47cbae3d,
+GenBank\Aureus_Phynteny_split\NC_047725.1.gbk,ok,NC_047725.1,NC_047725.1 - Phynteny annotated genome,148481,268,6695566f6f4566a7306a0f40353a03fd,
+GenBank\Aureus_Phynteny_split\NC_047726.1.gbk,ok,NC_047726.1,NC_047726.1 - Phynteny annotated genome,148243,271,ca5a1eabb9152d8c8e3eef3030cbde31,
+GenBank\Aureus_Phynteny_split\NC_047727.1.gbk,ok,NC_047727.1,NC_047727.1 - Phynteny annotated genome,147590,269,764151909d90a37e4f11c48b0d4b9bc6,

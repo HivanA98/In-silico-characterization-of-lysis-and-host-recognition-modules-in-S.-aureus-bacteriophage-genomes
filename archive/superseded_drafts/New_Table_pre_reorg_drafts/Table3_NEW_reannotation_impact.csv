@@ -1,0 +1,23 @@
+Phage,Accession,CDS_deposited,CDS_reannotated,Delta,Holin_deposited,Holin_reannotated,RBP_deposited,RBP_reannotated,RBP_genes_deposited,RBP_genes_reannotated
+Staphylococcus phage A5W,EU418428.2,232,270,38,Yes,Yes,Yes,Yes,1,3
+Staphylococcus phage qdsa002,KY779849.1,231,256,25,Yes,Yes,No,Yes,0,3
+Staphylococcus phage vB_SauM-fRuSau02,MF398190.1,236,275,39,Yes,Yes,Yes,Yes,2,3
+Staphylococcus phage VB_SavM_JYL01,MH159197.1,219,248,29,Yes,Yes,Yes,Yes,1,3
+Staphylococcus phage Maine,MN045228.1,219,245,26,Yes,Yes,Yes,Yes,1,3
+Staphylococcus phage vB_SauM-515A1,MN047438.1,236,276,40,Yes,Yes,Yes,Yes,2,3
+Staphylococcus phage vB_SauP-436A1,MN150710.1,21,22,1,No,Yes,Yes,No,2,0
+Staphylococcus phage Sb1_8383,MN336261.1,167,251,84,Yes,Yes,No,Yes,0,3
+Staphylococcus phage Sb1M_6168,MN336262.1,165,244,79,Yes,Yes,No,Yes,0,3
+Staphylococcus phage Sb1M_9832,MN336263.1,164,244,80,Yes,Yes,No,Yes,0,3
+Staphylococcus phage Portland,MT926124.1,20,22,2,Yes,Yes,Yes,No,3,0
+Staphylococcus phage Twort,NC_007021.1,195,214,19,Yes,Yes,Yes,Yes,3,3
+Staphylococcus phage EW,NC_007056.1,77,82,5,Yes,Yes,Yes,Yes,1,1
+Staphylococcus phage JD007,NC_019726.1,217,247,30,Yes,Yes,Yes,Yes,3,3
+Staphylococcus phage SA13,NC_021863.1,62,74,12,Yes,Yes,Yes,Yes,2,2
+Staphylococcus aureus bacteriophage Sb-1,NC_023009.1,168,215,47,Yes,Yes,Yes,Yes,3,3
+Staphylococcus phage Staph1N,NC_047722.1,232,270,38,Yes,Yes,Yes,Yes,1,3
+Staphylococcus phage A3R,NC_047723.1,212,252,40,Yes,Yes,Yes,Yes,1,3
+Staphylococcus phage 676Z,NC_047724.1,233,274,41,Yes,Yes,No,Yes,0,3
+Staphylococcus phage Fi200W,NC_047725.1,233,268,35,Yes,Yes,No,Yes,0,3
+Staphylococcus phage MSA6,NC_047726.1,232,271,39,Yes,Yes,No,Yes,0,3
+Staphylococcus phage P4W,NC_047727.1,232,269,37,Yes,Yes,No,Yes,0,3

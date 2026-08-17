@@ -1,0 +1,58 @@
+Phage,Accession,Protein_ID,Product,Length_aa,Subtype,Confidence,Product_Source,InterPro_Domain,InterPro_Verdict,Sequence_MD5
+Staphylococcus phage A5W,EU418428.2,KZVKIRPW_CDS_0121,tail fiber protein,302,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,ec8328107821
+Staphylococcus phage A5W,EU418428.2,KZVKIRPW_CDS_0147,tail fiber protein,124,tail_fiber,confirmed,product_qualifier,"Protein of unknown function (DUF2977), Protein of unknown function DUF2977, Coil",uncertain,897855a16278
+Staphylococcus phage A5W,EU418428.2,KZVKIRPW_CDS_0148,tail fiber protein,458,tail_fiber,confirmed,product_qualifier,"ORF68-like, C-terminal domain, ORF68, C-terminal",uncertain,7bdd73e54115
+Staphylococcus phage qdsa002,KY779849.1,JDZSTRXW_CDS_0131,tail fiber protein,302,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,95b1e6e7fb88
+Staphylococcus phage qdsa002,KY779849.1,JDZSTRXW_CDS_0158,tail fiber protein,123,tail_fiber,confirmed,product_qualifier,"Protein of unknown function (DUF2977), Protein of unknown function DUF2977, Coil",uncertain,340376f4f5ec
+Staphylococcus phage qdsa002,KY779849.1,JDZSTRXW_CDS_0159,tail fiber protein,458,tail_fiber,confirmed,product_qualifier,"ORF68-like, C-terminal domain, ORF68, C-terminal",uncertain,59d2052c2fd1
+Staphylococcus phage vB_SauM-fRuSau02,MF398190.1,OLZRWPKP_CDS_0123,tail fiber protein,302,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,ec8328107821
+Staphylococcus phage vB_SauM-fRuSau02,MF398190.1,OLZRWPKP_CDS_0149,tail fiber protein,124,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,897855a16278
+Staphylococcus phage vB_SauM-fRuSau02,MF398190.1,OLZRWPKP_CDS_0150,tail fiber protein,458,tail_fiber,confirmed,product_qualifier,"ORF68-like, C-terminal domain, ORF68, C-terminal",uncertain,6b3656b3b074
+Staphylococcus phage VB_SavM_JYL01,MH159197.1,AGSGOGKS_CDS_0048,tail fiber protein,302,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,ec8328107821
+Staphylococcus phage VB_SavM_JYL01,MH159197.1,AGSGOGKS_CDS_0075,tail fiber protein,124,tail_fiber,confirmed,product_qualifier,"Coil, Protein of unknown function (DUF2977), Protein of unknown function DUF2977, consensus disorder prediction",uncertain,d0143f681fe1
+Staphylococcus phage VB_SavM_JYL01,MH159197.1,AGSGOGKS_CDS_0076,tail fiber protein,458,tail_fiber,confirmed,product_qualifier,"ORF68-like, C-terminal domain, ORF68, C-terminal",uncertain,985d8df3f84e
+Staphylococcus phage Maine,MN045228.1,VICBKDWT_CDS_0117,tail fiber protein,302,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,ec8328107821
+Staphylococcus phage Maine,MN045228.1,VICBKDWT_CDS_0144,tail fiber protein,123,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,340376f4f5ec
+Staphylococcus phage Maine,MN045228.1,VICBKDWT_CDS_0145,tail fiber protein,458,tail_fiber,confirmed,product_qualifier,"ORF68-like, C-terminal domain, ORF68, C-terminal",uncertain,52f52557b017
+Staphylococcus phage vB_SauM-515A1,MN047438.1,KJCBGFSH_CDS_0121,tail fiber protein,302,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,ec8328107821
+Staphylococcus phage vB_SauM-515A1,MN047438.1,KJCBGFSH_CDS_0147,tail fiber protein,124,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,897855a16278
+Staphylococcus phage vB_SauM-515A1,MN047438.1,KJCBGFSH_CDS_0148,tail fiber protein,458,tail_fiber,confirmed,product_qualifier,"ORF68-like, C-terminal domain, ORF68, C-terminal",uncertain,5ff327ae1958
+Staphylococcus phage Sb1_8383,MN336261.1,OQGYJTQY_CDS_0096,tail fiber protein,302,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,ec8328107821
+Staphylococcus phage Sb1_8383,MN336261.1,OQGYJTQY_CDS_0122,tail fiber protein,124,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,897855a16278
+Staphylococcus phage Sb1_8383,MN336261.1,OQGYJTQY_CDS_0123,tail fiber protein,458,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,5ff327ae1958
+Staphylococcus phage Sb1M_6168,MN336262.1,BXTYJNIB_CDS_0096,tail fiber protein,302,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,ec8328107821
+Staphylococcus phage Sb1M_6168,MN336262.1,BXTYJNIB_CDS_0122,tail fiber protein,124,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,897855a16278
+Staphylococcus phage Sb1M_6168,MN336262.1,BXTYJNIB_CDS_0123,tail fiber protein,458,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,5ff327ae1958
+Staphylococcus phage Sb1M_9832,MN336263.1,TESJJVRS_CDS_0096,tail fiber protein,302,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,ec8328107821
+Staphylococcus phage Sb1M_9832,MN336263.1,TESJJVRS_CDS_0122,tail fiber protein,124,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,897855a16278
+Staphylococcus phage Sb1M_9832,MN336263.1,TESJJVRS_CDS_0123,tail fiber protein,458,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,5ff327ae1958
+Staphylococcus phage Twort,NC_007021.1,ENNBSAYA_CDS_0014,tail fiber protein,303,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,0296cd8cbcf8
+Staphylococcus phage Twort,NC_007021.1,ENNBSAYA_CDS_0044,tail fiber protein,121,tail_fiber,confirmed,product_qualifier,"consensus disorder prediction, Protein of unknown function (DUF2977), Protein of unknown function DUF2977",uncertain,b74f9b110b67
+Staphylococcus phage Twort,NC_007021.1,ENNBSAYA_CDS_0045,tail fiber protein,442,tail_fiber,confirmed,product_qualifier,"ORF68-like, C-terminal domain, ORF68, C-terminal",uncertain,cf26b5c5746a
+Staphylococcus phage EW,NC_007056.1,KAZGTCGV_CDS_0023,tail fiber protein,110,tail_fiber,confirmed,product_qualifier,"YomQ N-terminal domain, YomQ, N-terminal domain",uncertain,97d7f4d000ec
+Staphylococcus phage JD007,NC_019726.1,YBRHYEDY_CDS_0003,tail fiber protein,458,tail_fiber,confirmed,product_qualifier,"ORF68-like, C-terminal domain, ORF68, C-terminal",uncertain,fb7776214584
+Staphylococcus phage JD007,NC_019726.1,YBRHYEDY_CDS_0004,tail fiber protein,123,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,340376f4f5ec
+Staphylococcus phage JD007,NC_019726.1,YBRHYEDY_CDS_0031,tail fiber protein,302,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,602dfe9ada2e
+Staphylococcus phage SA13,NC_021863.1,ETOBJHUS_CDS_0062,tail fiber protein,135,tail_fiber,confirmed,product_qualifier,"Coil, Protein of unknown function (DUF2977), Protein of unknown function DUF2977, consensus disorder prediction",uncertain,43cfb6d8c8c0
+Staphylococcus phage SA13,NC_021863.1,ETOBJHUS_CDS_0066,tail fiber protein,390,tail_fiber,confirmed,product_qualifier,"consensus disorder prediction, BppU N-terminal domain, BppU, N-terminal",structural_tail,389d46f2e655
+Staphylococcus aureus bacteriophage Sb-1,NC_023009.1,WRIPWZIY_CDS_0098,tail fiber protein,302,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,ec8328107821
+Staphylococcus aureus bacteriophage Sb-1,NC_023009.1,WRIPWZIY_CDS_0125,tail fiber protein,124,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,897855a16278
+Staphylococcus aureus bacteriophage Sb-1,NC_023009.1,WRIPWZIY_CDS_0126,tail fiber protein,458,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,5ff327ae1958
+Staphylococcus phage Staph1N,NC_047722.1,SAQOIGAH_CDS_0121,tail fiber protein,302,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,ec8328107821
+Staphylococcus phage Staph1N,NC_047722.1,SAQOIGAH_CDS_0147,tail fiber protein,124,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,897855a16278
+Staphylococcus phage Staph1N,NC_047722.1,SAQOIGAH_CDS_0148,tail fiber protein,458,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,7bdd73e54115
+Staphylococcus phage A3R,NC_047723.1,ZBEUHSDN_CDS_0119,tail fiber protein,302,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,ec8328107821
+Staphylococcus phage A3R,NC_047723.1,ZBEUHSDN_CDS_0147,tail fiber protein,124,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,897855a16278
+Staphylococcus phage A3R,NC_047723.1,ZBEUHSDN_CDS_0148,tail fiber protein,458,tail_fiber,confirmed,product_qualifier,"ORF68-like, C-terminal domain, ORF68, C-terminal",uncertain,860ebaf3b5c7
+Staphylococcus phage 676Z,NC_047724.1,PMGJCEZU_CDS_0122,tail fiber protein,302,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,ec8328107821
+Staphylococcus phage 676Z,NC_047724.1,PMGJCEZU_CDS_0150,tail fiber protein,124,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,897855a16278
+Staphylococcus phage 676Z,NC_047724.1,PMGJCEZU_CDS_0151,tail fiber protein,458,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,860ebaf3b5c7
+Staphylococcus phage Fi200W,NC_047725.1,IMIXBZXZ_CDS_0120,tail fiber protein,302,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,ec8328107821
+Staphylococcus phage Fi200W,NC_047725.1,IMIXBZXZ_CDS_0148,tail fiber protein,124,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,897855a16278
+Staphylococcus phage Fi200W,NC_047725.1,IMIXBZXZ_CDS_0149,tail fiber protein,458,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,860ebaf3b5c7
+Staphylococcus phage MSA6,NC_047726.1,VWMWFUHB_CDS_0122,tail fiber protein,302,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,ec8328107821
+Staphylococcus phage MSA6,NC_047726.1,VWMWFUHB_CDS_0148,tail fiber protein,124,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,897855a16278
+Staphylococcus phage MSA6,NC_047726.1,VWMWFUHB_CDS_0149,tail fiber protein,458,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,5ff327ae1958
+Staphylococcus phage P4W,NC_047727.1,IKVLJGTR_CDS_0120,tail fiber protein,302,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,ec8328107821
+Staphylococcus phage P4W,NC_047727.1,IKVLJGTR_CDS_0148,tail fiber protein,124,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,897855a16278
+Staphylococcus phage P4W,NC_047727.1,IKVLJGTR_CDS_0149,tail fiber protein,458,tail_fiber,confirmed,product_qualifier,no domain returned,no_domain,860ebaf3b5c7

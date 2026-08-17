@@ -1,0 +1,2 @@
+Phage,Accession,Class,Family,SubFamily,Genome_Size_bp,GC_Percent,CDS_Count,tRNA_Count,NCBI_Status,qc_status,qc_flags,annotation_present,duplicate_group,is_representative,taxonomy_flag,seq_md5,source_file
+EU418428.2 - Phynteny annotated genome,EU418428.2,Caudoviricetes,Unassigned,Unassigned,145542,30.42,270,0,Draft/Partial,PASS,,True,,True,family_unresolved_verify_ICTV,6f1c9464a15d2f9559cb1ff100837d9f,GenBank\Phynteny\phynteny.gbk

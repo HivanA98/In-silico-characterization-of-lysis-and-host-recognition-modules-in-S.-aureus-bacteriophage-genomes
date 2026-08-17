@@ -1,0 +1,36 @@
+# phage characterization run manifest
+# script,S4_endolysin_extractor.py v3.0.0
+# profile,staphylococcus_aureus
+# phagecore,3.0.0 (phase-2-multihost)
+# python,3.12.10
+# biopython,1.87
+# pandas,3.0.3
+# platform,Windows-11-10.0.26200-SP0
+# run_utc,2026-08-17T00:28:38+00:00
+# selected,18
+# unique_sequences,8
+# genomes_without_endolysin,4
+
+source_file,status,accession,organism,seq_len,n_cds,seq_md5,message
+GenBank\Aureus_Phynteny_split\EU418428.2.gbk,ok,EU418428.2,EU418428.2 - Phynteny annotated genome,145542,270,,
+GenBank\Aureus_Phynteny_split\KY779849.1.gbk,ok,KY779849.1,KY779849.1 - Phynteny annotated genome,142499,256,,
+GenBank\Aureus_Phynteny_split\MF398190.1.gbk,ok,MF398190.1,MF398190.1 - Phynteny annotated genome,148464,275,,
+GenBank\Aureus_Phynteny_split\MH159197.1.gbk,ok,MH159197.1,MH159197.1 - Phynteny annotated genome,141384,248,,
+GenBank\Aureus_Phynteny_split\MN045228.1.gbk,ok,MN045228.1,MN045228.1 - Phynteny annotated genome,141712,245,,
+GenBank\Aureus_Phynteny_split\MN047438.1.gbk,ok,MN047438.1,MN047438.1 - Phynteny annotated genome,148511,276,,
+GenBank\Aureus_Phynteny_split\MN150710.1.gbk,ok,MN150710.1,MN150710.1 - Phynteny annotated genome,18028,22,,
+GenBank\Aureus_Phynteny_split\MN336261.1.gbk,ok,MN336261.1,MN336261.1 - Phynteny annotated genome,139606,251,,
+GenBank\Aureus_Phynteny_split\MN336262.1.gbk,ok,MN336262.1,MN336262.1 - Phynteny annotated genome,138231,244,,
+GenBank\Aureus_Phynteny_split\MN336263.1.gbk,ok,MN336263.1,MN336263.1 - Phynteny annotated genome,138231,244,,
+GenBank\Aureus_Phynteny_split\MT926124.1.gbk,ok,MT926124.1,MT926124.1 - Phynteny annotated genome,17471,22,,
+GenBank\Aureus_Phynteny_split\NC_007021.1.gbk,ok,NC_007021.1,NC_007021.1 - Phynteny annotated genome,130706,214,,
+GenBank\Aureus_Phynteny_split\NC_007056.1.gbk,ok,NC_007056.1,NC_007056.1 - Phynteny annotated genome,45286,82,,
+GenBank\Aureus_Phynteny_split\NC_019726.1.gbk,ok,NC_019726.1,NC_019726.1 - Phynteny annotated genome,141836,247,,
+GenBank\Aureus_Phynteny_split\NC_021863.1.gbk,ok,NC_021863.1,NC_021863.1 - Phynteny annotated genome,42652,74,,
+GenBank\Aureus_Phynteny_split\NC_023009.1.gbk,ok,NC_023009.1,NC_023009.1 - Phynteny annotated genome,127188,215,,
+GenBank\Aureus_Phynteny_split\NC_047722.1.gbk,ok,NC_047722.1,NC_047722.1 - Phynteny annotated genome,145647,270,,
+GenBank\Aureus_Phynteny_split\NC_047723.1.gbk,ok,NC_047723.1,NC_047723.1 - Phynteny annotated genome,141018,252,,
+GenBank\Aureus_Phynteny_split\NC_047724.1.gbk,ok,NC_047724.1,NC_047724.1 - Phynteny annotated genome,148564,274,,
+GenBank\Aureus_Phynteny_split\NC_047725.1.gbk,ok,NC_047725.1,NC_047725.1 - Phynteny annotated genome,148481,268,,
+GenBank\Aureus_Phynteny_split\NC_047726.1.gbk,ok,NC_047726.1,NC_047726.1 - Phynteny annotated genome,148243,271,,
+GenBank\Aureus_Phynteny_split\NC_047727.1.gbk,ok,NC_047727.1,NC_047727.1 - Phynteny annotated genome,147590,269,,

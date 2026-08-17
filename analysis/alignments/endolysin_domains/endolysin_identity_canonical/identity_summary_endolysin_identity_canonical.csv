@@ -1,0 +1,5 @@
+Partition,N_sequences,N_pairs,Min_pct,Q1_pct,Median_pct,Q3_pct,Max_pct,Range_pct
+full_length,8,28,42.56,42.95,43.21,98.99,100.0,57.44
+CHAP,8,28,22.9,38.28,41.41,99.24,100.0,77.1
+Amidase,6,15,54.19,54.34,100.0,100.0,100.0,45.81
+SH3b,8,28,45.63,47.12,48.57,95.28,100.0,54.37

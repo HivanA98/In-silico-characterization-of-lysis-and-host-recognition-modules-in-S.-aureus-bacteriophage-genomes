@@ -1,0 +1,299 @@
+# =====================================================================
+# staphylococcus_aureus.yaml
+# ---------------------------------------------------------------------
+# This file MIRRORS the built-in Phase-1 profile (phagecore/profiles.py
+# -> STAPH_AUREUS). You do NOT need it to run Phase 1: passing
+# --profile staphylococcus_aureus uses the built-in copy with zero extra
+# dependencies. It is provided as the canonical FORMAT REFERENCE for
+# writing Phase-2 host profiles (see _TEMPLATE_gram_negative.yaml).
+#
+# Loading any external .yaml profile requires PyYAML:  pip install pyyaml
+# =====================================================================
+
+name: staphylococcus_aureus
+display_name: Staphylococcus aureus
+gram: positive
+
+default_class: Caudoviricetes
+
+# Resolved from the GenBank lineage first; this map is the curated fallback
+# used only when the lineage omits the family rank. Entries not listed are
+# left to the lineage or flagged 'family_unresolved_verify_ICTV'.
+taxonomy_overrides:
+  Twortvirinae: Herelleviridae
+  Rakietenvirinae: Rountreeviridae
+  Azeredovirinae: Unassigned        # no family in NCBI lineage (EW, SA13)
+
+# QC plausibility envelope (S. aureus phages)
+min_cds_genome_size_bp: 10000       # >= this with 0 CDS => FAIL_NO_CDS
+size_bounds_bp: [15000, 300000]     # 16.9 kb micro .. 274 kb jumbo (observed)
+gc_bounds_pct: [24.0, 38.0]         # v3.1.0 re-derived on the n=105 set: the B6 JUMBO phages
+                                    # (Machias/Madawaska/PB50/S6/AH12, 264-274 kb) sit at 24.6-25.1 %
+                                    # and were false-flagged by the old 28.0 floor. Upper bound kept at
+                                    # 38.0 on purpose so FV3-like high-GC (43.5 %) still raises gc_above.
+
+holin_keywords:
+  - holin
+  - putative holin
+  - class i holin
+  - class ii holin
+  - phage holin
+
+rbp_keywords:
+  - tail fiber
+  - tail fibre
+  - receptor binding protein
+  - receptor-binding protein
+  - tail spike
+  - tailspike
+  - tail-spike
+  - host recognition protein
+  - adsorption protein
+  - baseplate receptor-binding
+  - host specificity protein
+  - rbp                              # matched on word boundary
+
+lysis_keywords:                      # broad collection net
+  - lysin
+  - endolysin
+  - lysk
+  - amidase
+  - chap
+  - peptidase
+  - hydrolase
+  - muramidase
+  - glucosaminidase
+  - glycosidase
+  - lysozyme
+  - peptidoglycan
+  - nlpc
+  - p60
+
+nonlytic_markers: [ybia, nadar]
+
+vaph_markers:
+  - tail
+  - baseplate
+  - structural
+  - virion
+  - lid_weld
+  - phage_lysozyme2
+  - tail-anchored
+  - tail associated
+  - tail-associated
+
+# v3.0: EVIDENCE KEYS that count as a free endolysin (consumed by
+# classify_candidate). This is the former hardcoded classify tuple moved out of
+# the engine; reproduces the v2.x free/not-free decision byte-for-byte.
+lytic_domain_terms:
+  - chap
+  - amidase
+  - chap_amidase
+  - peptidase_m15
+  - glucosaminidase
+  - nlpc_p60
+  - muramidase
+  - glycosidase
+  - endolysin_generic
+  - peptidoglycan_hydrolase
+
+# v3.0: host naming of neutral engine evidence keys. Reproduces the exact v2.x
+# display strings ("LysK-type", "NADAR/YbiA") so the audit CSV is byte-identical.
+domain_labels:
+  nonlytic: "NADAR/YbiA (non-lytic)"
+  tail_lysozyme: "Phage_lysozyme2 (tail lysozyme)"
+  chap_amidase: "CHAP + Amidase (LysK-type)"
+  chap: "CHAP"
+  amidase: "Amidase"
+  peptidase_m15: "Peptidase_M15"
+  glucosaminidase: "Glucosaminidase"
+  nlpc_p60: "NlpC/P60"
+  muramidase: "Muramidase/Phage_lysozyme"
+  glycosidase: "Glycosidase (phosphodiester/NAGPA)"
+  endolysin_generic: "LysK-type (unspecified)"
+  peptidoglycan_hydrolase: "Peptidoglycan hydrolase"
+  peptidase_generic: "Peptidase (unspecified — verify)"
+  hydrolase_generic: "Hydrolase (unspecified — verify; may be non-PG)"
+  unknown: "unknown"
+
+vaph_length_threshold_aa: 700
+endolysin_canonical_window_aa: [440, 520]
+endolysin_plausible_window_aa: [200, 600]
+
+reference_accession: MN336261        # Sb1_8383 LysK (tBLASTn reference)
+
+intron_split_accessions: [MN047438, MF398190]
+hnh_fragmented_accessions: [MN336262, MN336263]
+
+# Validated exceptions (manual InterPro + tBLASTn). Status uses the canonical
+# lowercase vocabulary. This is curated knowledge, not technical debt.
+known_cases:
+  MN047438:
+    status: intron-split
+    identity: null
+    note: "lysK.1 N-terminal amidase moiety (~209 aa); full LysK ~495 aa across a self-splicing intron (Kornienko 2020, Viruses, TU16)."
+  MF398190:
+    status: intron-split
+    identity: null
+    note: "lysK.1 N-terminal amidase moiety (~209 aa); same architecture as MN047438."
+  MN045228:
+    status: tblastn-recovered
+    identity: 99.0
+    note: "free LysK missed by keyword scan; recovered by tBLASTn vs Sb1_8383 at 99%."
+  NC_019726:
+    status: tblastn-recovered
+    identity: 99.0
+    note: "free 495-aa LysK recovered by tBLASTn vs Sb1_8383 at 99%; keyword scan returned a 295-aa virion-associated NlpC/P60."
+  MN336262:
+    status: hnh-disrupted
+    identity: null
+    note: "no intact endolysin ORF (HNH endonuclease insertion); 141-aa CHAP fragment recovered by tBLASTn (Kornienko 2023)."
+  MN336263:
+    status: hnh-disrupted
+    identity: null
+    note: "no intact endolysin ORF (HNH insertion); 141-aa CHAP fragment recovered by tBLASTn."
+  NC_007021:
+    status: vaph
+    identity: 45.0
+    note: "1269-aa phage tail lysozyme (Phage_lysozyme2), tail-anchored — virion-associated peptidoglycan hydrolase, not a free endolysin."
+  NC_007056:
+    status: divergent-endolysin
+    identity: null
+    note: "576-aa NAGPA phosphodiester glycosidase, no SH3b CBD — a divergent free endolysin (outgroup lineage)."
+
+# Phase-1: only endolysin + holin. Phase-2 Gram-negative adds 'spanin';
+# Mycobacterium adds 'lysinB'.
+active_lysis_modules: [endolysin, holin]
+
+# Precision denylist (checked against product/gene identity): broad-keyword
+# false positives confirmed non-endolysin by InterPro on the 59-unique set.
+non_endolysin_markers:
+  - dutpase
+  - deoxyuridine
+  - nucleotidohydrolase
+  - pyrophosphohydrolase
+  - pyrophosphatase
+  - dctp
+  - chaperonin
+  - groel
+  - cpn60
+  - chaperone
+  - ribonuclease
+  - rnase
+  - hydroxyacylglutathione
+  - p-loop
+  - nucleoside triphosphate hydrolase
+  - tail spike
+  - tailspike
+  - tail-spike
+
+# UPDATE (this round) — NOT APPLIED, flagged for operator review.
+# The new Aureus Dali Result.txt has 12 job entries, but the job-naming scheme in
+# this file is INCONSISTENT with every other host and with aureus's own prior round:
+#   6 jobs are ACCESSION-style (MW349129, NC_054982, NC_030652, OR479082, PV685964,
+#     OR770614) — 4 of these MATCH the ACCESSION (not protein_id) of the 5 already-
+#     confirmed B6 cases below, but their Dali scores in THIS file do not match the
+#     scores already recorded (e.g. job 'MW349129' here scores Z=12.7 to a hyaluronate
+#     lyase, vs the confirmed QQO92708.1 case recorded at Z=27.4 to a pectate lyase).
+#     'MW349129' also appears TWICE in the raw file (duplicate job block).
+#   6 jobs are protein_id-style (QQO92700, WPH64131, AGK86794, WNX97575, QQO92438,
+#     QQO92806) — none of these match any of the 5 known protein_ids, though 3 are
+#     numerically close to known ones (QQO92700 vs QQO92708; WPH64131 vs WPH64123) —
+#     i.e. plausibly OTHER genes on the SAME B6 phages, not re-folds of the known cases.
+# Given this ambiguity, the 5 known_cases below are left COMPLETELY UNCHANGED, and
+# NOTHING from the new file has been added. Best guess without an audit: these 12 jobs
+# are candidate NEW proteins from the B6-lineage phages, not re-confirmations of the
+# existing 5. Re-submit with rbp_audit_AureusPhage.csv (or clarify the job-naming
+# convention used this round) before any of these 12 can be added.
+# Raw findings, for reference (Z / %id / PDB description; job name as submitted):
+#   MW349129           Z=27.4   id= 23% PECTATE LYASE
+#   NC_054982          Z=33.0   id= 18% GDSL-LIKE LIPASE/ACYLHYDROLASE FAMILY PROTEI
+#   NC_030652          (no depolymerase-like hit)
+#   OR479082           (no depolymerase-like hit)
+#   PV685964           (no depolymerase-like hit)
+#   OR770614           Z=13.1   id= 17% HYALURONATE LYASE
+#   QQO92700           Z=13.2   id= 13% XYLANASE
+#   WPH64131           (no depolymerase-like hit)
+#   AGK86794           (no depolymerase-like hit)
+#   WNX97575           (no depolymerase-like hit)
+#   QQO92438           Z=12.6   id=  9% GLYCOSIDE HYDROLASE FAMILY 9
+#   QQO92806           Z=26.8   id= 14% GLYCOSIDE HYDROLASE BT_1002
+
+prefer_refseq_representative: true
+
+# =====================================================================
+# v3.0/v3.1.0 S5-S7 HOST ANCHORS  (absent from the old v2.x mirror file)
+# Without this block a --profile AureusPhage.yaml run silently loses the D4
+# depolymerase verdicts and the S6 Has_ columns.
+# =====================================================================
+
+# --- S7 host codon reference ---
+host_reference_acc: "NC_007795.1"        # S. aureus NCTC 8325 (pass host\Staphylococcus_aureus to --host)
+
+# --- S6 tRNA anchors ---
+trna_ground_truth_acc: "NC_023009"       # Staphylococcus phage Sb-1 (annotated tRNAs)
+trna_secondary_anchor_acc: ""            # none yet; ARAGORN concordance pending
+# Sb-1-derived and CAT-corrected: the CAT tRNA is Ile2 (decodes ATA via lysidine),
+# NOT Met; Trp dropped (not recovered de novo).
+trna_canonical_isotypes: [Ile, Phe, Asp]
+
+# --- S5 host-recognition / depolymerase axis ---
+biofilm_matrix: "PNAG/PIA"
+matrix_depolymerase_terms:
+  - pectin lyase
+  - pectate lyase
+  - pectin/pectate
+  - parallel beta-helix
+  - right-handed beta-helix
+  - pectin lyase fold
+  - polysaccharide lyase
+  - sialidase
+  - neuraminidase
+  - bnr/asp-box
+  - sgnh
+  - gdsl
+  - carbohydrate esterase
+  - dextranase
+  - levanase
+  - hyaluronidase
+  - rhamnosidase
+  - alginate lyase
+ambiguous_matrix_terms:
+  - glycoside hydrolase
+  - glycosyl hydrolase
+  - family 73
+  - glucosaminidase
+  - n-acetylglucosaminidase
+  - glycoside hydrolase/deacetylase
+s2_annotation_gap_accessions: [KY779849, MN336261, MN336262, MN336263, NC_047724, NC_047725, NC_047726, NC_047727]
+
+# --- D4: B6 giant-carrier depolymerase DOMAINS, Dali-confirmed ---
+# A keyword scan cannot see a depolymerase domain inside a 2700-3084 aa tail-fibre
+# carrier, so these are recorded as curated, source-tagged known_cases. Proteins
+# listed here are NEVER re-folded (the engine excludes them from --colabfold-targets).
+depolymerase_known_cases:
+  - accession: MW349129.1
+    protein_id: QQO92708.1
+    verdict: matrix_depolymerase
+    evidence: "Dali Z=27.4 pectate lyase fold (1ru4); domain in 2706-aa Madawaska carrier"
+    source: Dali
+  - accession: OR770614.1
+    protein_id: WPH64123.1
+    verdict: matrix_depolymerase
+    evidence: "Dali Z=13.1 hyaluronate lyase fold (4d0q); domain in 2781-aa PB50 carrier"
+    source: Dali
+  - accession: NC_054982.1
+    protein_id: YP_010080028.1
+    verdict: matrix_depolymerase
+    evidence: "Dali Z=30.3 SGNH esterase fold (8gkd); Sebago"
+    source: Dali
+  - accession: MW349128.1
+    protein_id: QQO92446.1
+    verdict: matrix_depolymerase
+    evidence: "locked B6 lineage (v2.3.2 Dali); hyaluronate-lyase/xylanase in 3084-aa Machias carrier"
+    source: Dali
+  - accession: NC_030652.1
+    protein_id: YP_009268692.1
+    verdict: matrix_depolymerase
+    evidence: "SGNH esterase (keyword + B6 lineage); phage 80; substrate pending wet-lab"
+    source: NCBI

@@ -1,0 +1,1 @@
+endolysin_audit_AureusPhage.csv and endolysin_audit_AureusPhage_tblastn.csv are the same S4_endolysin_extractor.py run over the 22-genome Phynteny-annotated set, with and without --run-tblastn; they are byte-identical because every genome that would trigger a tBLASTn comparison is a curated case already resolved in code/profiles/AureusPhage.yaml.
