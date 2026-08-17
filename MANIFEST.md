@@ -17,7 +17,7 @@ intentionally left out" at the end for what was left behind and why).
 | Table II (as printed, both column groups combined) | S2 + S4 + InterPro, assembled and verified by the corresponding author | — | `manuscript_tables/Table_II_lysis_host_recognition.csv` — supplied directly as the manuscript-ready table, see note below |
 | Table III | S2 run on three arms, assembled and verified by the corresponding author | `results/arm1_deposited/Table2_holin_rbp_AureusPhage.csv`, `results/arm2_pharokka/Table2_holin_rbp_AureusPhage.csv`, `results/arm3_phold/Table2_holin_rbp_AureusPhage.csv` | `manuscript_tables/Table_III_annotation_source_comparison.csv` — supplied directly as the manuscript-ready table, see note below |
 | Figure 1 | S3 → MAFFT → MEGA (final rendering via iTOL) | `data/genomes_deposited/` | `analysis/alignments/terl/` (`TerL_combined_AureusPhage.faa`, `TerL_aligned.faa`), `analysis/phylogeny_mega/` (Newick, MEGA session `.mtsx`, vector `.svg`, `Figure_1_300dpi.tif`, `itol/` annotation files), `analysis/interpro/terl/TerL_combined_AureusPhage.tsv` (domain call, not required to build the tree but deposited for the domain-level check — see note) |
-| Supplementary Table S1 (Phynteny residual annotation) | Phynteny per-CDS table (`phynteny.tsv`) + Phold per-genome function counts | `data/genomes_phynteny/phynteny.gbk` (source genomes); the per-CDS PHROG table and Phold counts themselves are not yet in the repository | `manuscript_tables/SupplTable_S1_phynteny_residual_annotation.csv` — **source file currently not deposited; the CSV below reflects the pre-audit `results/arm4_phynteny/` output, see note** |
+| Supplementary Table S1 (Phynteny residual annotation) | Phynteny per-CDS table (`phynteny.tsv`) + Phold per-genome function counts | `data/genomes_phynteny/phynteny.gbk`, `data/genomes_phynteny/phynteny.tsv`, `analysis/phold_function_counts/*_all_cds_functions.tsv` (22 genomes) | `manuscript_tables/SupplTable_S1_phynteny_residual_annotation.csv` — rebuilt from the two source files above and verified against them, see note |
 | Supplementary Table S2 (phage-vs-host codon usage) | S7b | `data/genomes_deposited/`, `data/host_genomes/`, `code/profiles/AureusPhage.yaml` | `analysis/codon/phage_host_similarity.csv` (copy: `manuscript_tables/SupplTable_S2_codon_usage_similarity.csv`); `analysis/codon/phage_codon_usage.csv` and `phage_host_rscu_matrix.csv` also deposited |
 | Supplementary Table S3 (VIRIDIC intergenomic similarity) | VIRIDIC (external) | 22 retained genomes + 2 excluded during curation | `analysis/viridic/` (copy: `manuscript_tables/SupplTable_S3_viridic_intergenomic_similarity.csv`, tab-delimited content unchanged) |
 | Supplementary Table S4 (endolysin per-domain pairwise identity) | S4b (`--align read` over the MAFFT-web alignments already in `analysis/alignments/endolysin_domains/*/align/`) | `results/arm1_deposited/endolysin_unique_AureusPhage_confirmed.faa`, `results/arm1_deposited/interpro_endolysin/endolysin_unique_AureusPhage.tsv` | `analysis/alignments/endolysin_domains/endolysin_identity_canonical/identity_summary_endolysin_identity_canonical.csv` (copy: `manuscript_tables/SupplTable_S4_endolysin_domain_identity.csv`); the unfiltered ("all status") run is also deposited under `endolysin_identity_all/` — see note |
@@ -46,27 +46,90 @@ intentionally left out" at the end for what was left behind and why).
   confirm the intended selection rule before any "N of 22 confirmed
   endolysins" figure is quoted in the text — it is not corrected here, since
   this repository pass does not edit already-deposited result files.
-- **Supplementary Table S1** — reports residual proteins of unknown function
+- **Supplementary Table S1** reports residual proteins of unknown function
   and their PHROG category assignment; that is a Phynteny/Phold product, not
-  an S1–S4 arm output. Neither `phynteny.tsv` (Phynteny's per-CDS table) nor
-  the Phold per-genome function counts are in the repository, so the true
-  source cannot be regenerated here. `results/arm4_phynteny/` (S1–S4 run on
-  the Phynteny-annotated genomes, now the full 22-genome run — see "Gap 1"
-  history in the git log) is a separate, legitimate artefact in its own
-  right and does not feed Supplementary Table S1.
+  an S1–S4 arm output. Both true source files are now deposited:
+  `data/genomes_phynteny/phynteny.tsv` (Phynteny's per-CDS PHROG table, 4,789
+  CDS rows across all 22 genomes) and `analysis/phold_function_counts/`
+  (Phold's own per-genome `Description,Count,Contig` function tally, one file
+  per genome, 22 files total, deposited unmodified). Neither file was edited
+  in this pass. The previously deposited CSV was a mismatched leftover
+  (holin/RBP columns copied from the old single-genome `arm4_phynteny` run)
+  and has been replaced with a table rebuilt directly from these two
+  sources by the corresponding author, using this derivation, provided for
+  the Methods text: per genome, `CDS_total` and `Phold_unknown_function` are
+  the "CDS" and "unknown function" rows of that genome's
+  `*_all_cds_functions.tsv`; from `phynteny.tsv`, `Entering_Phynteny` counts
+  rows with `phrog_category == "unknown function"`, `Assigned_by_Phynteny`
+  counts rows with a non-null `phynteny_category`, `Assigned_to_tail` counts
+  rows with `phynteny_category == "tail"`, and the confidence columns
+  summarise `phynteny_confidence` over the assigned rows. Re-derived
+  independently in this pass directly from the deposited
+  `phynteny.tsv`/`analysis/phold_function_counts/` files (not just the
+  supplied CSV) and confirmed exactly: 4,789 CDS total; 2,656 of unknown
+  function after Phold; 2,599 entering Phynteny; 2,599 assigned a category
+  (all of them — every "unknown function" CDS that enters Phynteny gets a
+  category in this dataset); 1 assigned to tail; median confidence 0.232;
+  10.4% at or above 0.5; 2.5% at or above 0.8. The 57-protein gap between
+  the Phold unknown-function count (2,656) and the number entering Phynteny
+  (2,599) is proteins carrying a PHROG identifier whose category is
+  nonetheless unknown.
+- **Manuscript correction found while rebuilding this table.** The single
+  `Assigned_to_tail` CDS is `NC_021863.1_62` on NC_021863.1 (SA13) —
+  confirmed directly from `phynteny.tsv`. The typeset manuscript's
+  Supplementary Table S1 instead records this tail assignment against
+  Fi200W (NC_047725.1), which has zero. This is a manuscript-text error, not
+  a repository one; the corresponding author has been notified and it needs
+  correcting before resubmission.
+- `results/arm4_phynteny/` (S1–S4 run on the Phynteny-annotated genomes, now
+  the full 22-genome run — see "Gap 1" history in the git log) is a separate,
+  legitimate artefact in its own right and does not feed Supplementary
+  Table S1.
 - **Supplementary Table S4** — two variants exist: `endolysin_identity_all`
   (all 11 unique confirmed endolysins, no status filter) and
   `endolysin_identity_canonical` (8 sequences, `status=free-endolysin` only —
-  the "canonical" set the reviewer's question was about). The manuscript
-  table is assumed to be the canonical variant; please confirm against the
-  typeset PDF, which was not available in this repository to check against.
+  the "canonical" set the reviewer's question was about). **Confirmed by the
+  corresponding author**: the manuscript table is the canonical variant, and
+  the comparison is restricted to the fixed subset of 6 of those 8 sequences
+  that carry all three domains (CHAP, Amidase and SH3b): EU418428.2,
+  KY779849.1, MN336261.1, NC_021863.1, NC_047724.1 and NC_047727.1.
+  MN150710.1 and MT926124.1 are excluded because neither has an Amidase
+  domain call in `domain_regions_staphylococcus_aureus.csv`, even though
+  both have CHAP and SH3b calls individually. `identity_summary_endolysin_identity_canonical.csv`
+  and `manuscript_tables/SupplTable_S4_endolysin_domain_identity.csv` are
+  **unchanged from the original deposit** (`N_sequences`/`N_pairs` = 8/28
+  for `full_length`, `CHAP`, `SH3b` and 6/15 for `Amidase`, i.e. a single
+  pooled Min/Q1/Median/Q3/Max/Range across all canonical pairs). An earlier
+  pass of this repository briefly replaced these two files with a version
+  recomputed over the 6-protein subset for every partition, uniformly — that
+  recomputation was arithmetically correct (independently re-derived twice,
+  by two different people, from the same `identity_matrix_<domain>.csv`
+  pairwise values, both times reproducing full_length 43.0/98.99/99.39,
+  CHAP 22.9/99.24/100.0, SH3b 48.57/95.28/99.06 for Q1/Median/Q3) but is
+  **not** the statistic the manuscript reports, and has been reverted.
+  On the 6-protein subset, every partition is strictly bimodal — 10
+  within-species pairs cluster at or above 94% and 5 between-lineage pairs
+  cluster below 60%, with nothing in between — so a single pooled
+  median/quartile lands inside one cluster and says nothing about the
+  other. The manuscript instead reports the two clusters' ranges
+  separately: full-length 98.4–100.0% (within-species) vs 42.7–43.0%
+  (between-lineage); CHAP 99.2–100.0% vs 22.9%; Amidase 100.0% throughout
+  vs 54.2–54.5%; SH3b 94.3–100.0% vs 47.6–48.6%. Those two-cluster ranges
+  are not themselves a deposited file (the deposited `identity_summary`
+  files remain a legitimate but different statistic — a pooled summary
+  over all canonical pairs, not the within/between split quoted in text);
+  they are recorded here for traceability. Separately, the corresponding
+  author found that the Results text's "ten pairs at or above 95%" is
+  imprecise — one within-species SH3b pair sits at 94.34%, so the accurate
+  statement is "ten pairs above 94%" for all four partitions. This is a
+  manuscript-text correction, not a repository one.
 - **Figure 1 — TerL InterPro domain call.** `analysis/interpro/terl/TerL_combined_AureusPhage.tsv`
   covers 19 of the 20 sequences in `TerL_combined_AureusPhage.faa` (58
   domain-hit rows, no header, standard 15-column InterPro TSV format). The
   tree itself does not depend on this file (built from the MAFFT alignment
   and MEGA directly); it is deposited for readers who want a domain-level
-  check. The one sequence with
-  no rows, `NC_007021.1_Twort`, is also the shortest sequence in the file
+  check. The one sequence with no rows, `NC_007021.1_Twort`, is also the
+  shortest sequence in the file
   (286 aa, versus 402–605 aa for the other 19) — consistent with it falling
   below the significance threshold for every member database searched,
   rather than a submission error, but this was not independently confirmed
@@ -75,6 +138,11 @@ intentionally left out" at the end for what was left behind and why).
 
 ## 2. Not yet deposited
 
+- **A consumer script for Supplementary Table S1.** The derivation logic is
+  now documented (see the Supplementary Table S1 note above) but not yet
+  captured as a numbered stage script in `code/`; the table itself is
+  deposited and correct, this is only about making the derivation runnable
+  from the repository rather than described in prose.
 - **Endolysin selection rule for 4 genomes (all arms).** See the Table II
   note above — not a missing-file gap, but an open methodological question
   for the corresponding author about `S4_endolysin_extractor.py`'s selection
@@ -101,9 +169,8 @@ intentionally left out" at the end for what was left behind and why).
 `archive/pre_reorg_leftovers/` and `archive/superseded_drafts/` hold material
 that predates or was superseded by the current layout and is not cited by any
 manuscript object: an older backup of `code/profiles/AureusPhage.yaml`
-(`phage_characterization/`), a code-documentation Word file with no current
-home in the fixed layout (`Supplementary_Code_Documentation.docx`), a stray
-duplicate FASTA (`endolysin_candidates_tblastn.faa`, byte-identical to
+(`phage_characterization/`), a stray duplicate FASTA
+(`endolysin_candidates_tblastn.faa`, byte-identical to
 `results/arm1_deposited/endolysin_candidates_AureusPhage.faa`), four CSVs
 (`New_Table_pre_reorg_drafts/`) that use an older, incompatible
 table-numbering scheme and were not used to fill any Supplementary Table
@@ -115,3 +182,9 @@ root-level `phagecore/` holding only compiled cache files, and a verified
 byte-identical duplicate of all of `results/arm1_deposited/` under a folder
 named `Supplementary Files/`) was empty or fully redundant and was removed
 from the working tree rather than archived.
+
+`Supplementary_Code_Documentation.docx` was moved into
+`archive/pre_reorg_leftovers/` in an earlier pass of this repository on the
+assumption it was a superseded draft; that was incorrect. It is the v3.2
+deposit documentation written for this specific submission, and has been
+moved back to the repository root.
